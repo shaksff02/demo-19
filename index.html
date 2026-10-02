@@ -1,0 +1,3084 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f3f0e9">
+  <title>CSA · Duty Ledger</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjOTI2OWI4Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzU0MzY2ZCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTYiIGZpbGw9InVybCgjZykiLz4KICA8cmVjdCB4PSIyMiIgeT0iOCIgd2lkdGg9IjQiIGhlaWdodD0iOSIgcng9IjIiIGZpbGw9IiNmZmZmZmYiLz4KICA8cmVjdCB4PSIzOCIgeT0iOCIgd2lkdGg9IjQiIGhlaWdodD0iOSIgcng9IjIiIGZpbGw9IiNmZmZmZmYiLz4KICA8Y2lyY2xlIGN4PSIzMiIgY3k9IjM1IiByPSIxOCIgZmlsbD0iI2ZmZmZmZiIvPgogIDxjaXJjbGUgY3g9IjMyIiBjeT0iMzUiIHI9IjE4IiBmaWxsPSJub25lIiBzdHJva2U9IiM1NDM2NmQiIHN0cm9rZS13aWR0aD0iMiIvPgogIDxsaW5lIHgxPSIzMiIgeTE9IjM1IiB4Mj0iMzIiIHkyPSIyNCIgc3Ryb2tlPSIjNTQzNjZkIiBzdHJva2Utd2lkdGg9IjMuMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGxpbmUgeDE9IjMyIiB5MT0iMzUiIHgyPSI0MCIgeTI9IjM1IiBzdHJva2U9IiM1NDM2NmQiIHN0cm9rZS13aWR0aD0iMy4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8Y2lyY2xlIGN4PSIzMiIgY3k9IjM1IiByPSIyLjQiIGZpbGw9IiM1NDM2NmQiLz4KPC9zdmc+">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400..800&display=swap" rel="stylesheet">
+  <style>
+    /* ================================================================
+       THE IVORY LEDGER — editorial design system
+       ivory paper · deep ink · one emerald accent · didone serif
+       ================================================================ */
+    :root{
+      --paper:#f3f0e9;
+      --paper-deep:#eae5d9;
+      --surface:#fbfaf6;
+      --surface-alt:#f1ede3;
+      --raised:#e8e3d6;
+      --line:#ddd7c9;
+      --line-strong:#b8b1a0;
+      --ink:#211d15;
+      --ink-soft:#3a3529;
+      --muted:#6f6857;
+      --faint:#a49b87;
+      --emerald:#0d5c46;
+      --emerald-deep:#094535;
+      --emerald-dim:#e2efe9;
+      --gold:#8d6a26;
+      --gold-dim:#f3ecda;
+      --plum:#6a4d73;
+      --plum-dim:#efe8f1;
+      --info:#4a6076;
+      --info-dim:#e8edf2;
+      --danger:#a63d2f;
+      --danger-dim:#f6e7e4;
+      --radius:12px;
+      --font-display:'Bodoni Moda','Didot',Georgia,serif;
+      --font-body:'Manrope',-apple-system,'Segoe UI',sans-serif;
+      --font-mono:'IBM Plex Mono','SFMono-Regular',Menlo,monospace;
+      --ease:cubic-bezier(.22,1,.36,1);
+    }
+
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;}
+    body{
+      background:var(--paper);
+      color:var(--ink);
+      font-family:var(--font-body);
+      -webkit-font-smoothing:antialiased;
+      min-height:100vh;
+      border-top:5px solid var(--ink); /* masthead rule */
+    }
+    /* subtle paper grain — static texture, zero runtime cost */
+    body::after{
+      content:"";position:fixed;inset:0;z-index:2000;pointer-events:none;opacity:.5;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    }
+    ::selection{background:var(--ink);color:var(--paper);}
+    button:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
+
+    .wrap{max-width:1240px;margin:0 auto;padding:36px 28px 84px;}
+
+    /* ===== MASTHEAD ===== */
+    header.top{
+      display:flex;align-items:flex-end;justify-content:space-between;
+      gap:20px;flex-wrap:wrap;padding-bottom:18px;
+      border-bottom:2px solid var(--ink);position:relative;
+    }
+    header.top::after{ /* classic double rule */
+      content:"";position:absolute;left:0;right:0;bottom:-5px;height:1px;background:var(--ink);opacity:.5;
+    }
+    header.top h1{
+      font-family:var(--font-display);font-size:46px;font-weight:600;margin:0;
+      line-height:.95;letter-spacing:-.01em;color:var(--ink);
+    }
+    header.top h1 em{font-style:italic;font-weight:400;}
+    .tagline{
+      margin-top:10px;font-family:var(--font-mono);font-size:10.5px;
+      letter-spacing:.24em;text-transform:uppercase;color:var(--muted);
+    }
+    .masthead-right{display:flex;flex-direction:column;gap:5px;align-items:flex-end;}
+    .live-clock{
+      font-family:var(--font-mono);font-size:22px;font-weight:500;color:var(--ink);
+      letter-spacing:.05em;font-variant-numeric:tabular-nums;line-height:1;
+    }
+    .live-clock::before{
+      content:"";display:inline-block;width:7px;height:7px;border-radius:50%;
+      background:var(--emerald);margin-right:10px;vertical-align:1px;animation:pulse 2s infinite;
+    }
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+    header.top .updated{
+      font-family:var(--font-mono);font-size:10px;color:var(--faint);
+      letter-spacing:.1em;text-transform:uppercase;
+    }
+
+        /* ===== NAVIGATION — soft neumorphic pill tray ===== */
+    .view-nav{
+      display:flex;gap:8px;margin:28px 0 26px;
+      padding:7px;background:var(--paper);
+      border-radius:16px;overflow-x:auto;scrollbar-width:none;
+      box-shadow:inset 2px 2px 6px rgba(163,154,133,.22),
+                 inset -2px -2px 6px rgba(255,255,255,.9);
+    }
+    .view-nav::-webkit-scrollbar{display:none;}
+    .nav-btn{
+      position:relative;background:transparent;border:none;
+      padding:12px 18px;border-radius:11px;
+      font-family:var(--font-body);font-size:12px;font-weight:700;letter-spacing:.14em;
+      text-transform:uppercase;color:var(--muted);cursor:pointer;flex:0 0 auto;
+      display:inline-flex;align-items:center;gap:9px;
+      transition:color .18s ease,box-shadow .25s var(--ease),background-color .2s ease;
+    }
+    .nav-btn::after{ /* tiny emerald dot — only on active */
+      content:"";width:5px;height:5px;border-radius:50%;
+      background:var(--emerald);opacity:0;transform:scale(0);
+      transition:opacity .2s ease,transform .25s var(--ease);
+    }
+    .nav-btn:hover{
+      color:var(--ink);
+      box-shadow:2px 2px 6px rgba(163,154,133,.22),
+                 -2px -2px 6px rgba(255,255,255,.8);
+    }
+    .nav-btn.active{
+      color:var(--ink);
+      background:var(--surface);
+      box-shadow:4px 4px 10px rgba(163,154,133,.38),
+                 -4px -4px 10px rgba(255,255,255,.95);
+    }
+    .nav-btn.active::after{opacity:1;transform:scale(1);}
+
+    /* ===== DATE STRIP ===== */
+    .date-nav{
+      display:flex;gap:8px;margin-bottom:30px;overflow-x:auto;scroll-behavior:smooth;
+      -webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;scrollbar-width:none;
+      padding:2px 2px 12px;
+    }
+    .date-nav::-webkit-scrollbar{display:none;}
+    .date-btn{
+      flex:0 0 auto;scroll-snap-align:start;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;gap:2px;min-width:64px;
+      background:var(--surface);border:1px solid var(--line);color:var(--muted);
+      padding:10px 14px 9px;border-radius:10px;font-family:var(--font-body);cursor:pointer;
+      transition:transform .18s ease,border-color .18s ease,background-color .18s ease;
+    }
+    .date-btn .m{font-family:var(--font-mono);font-size:9px;font-weight:500;letter-spacing:.2em;color:var(--faint);text-transform:uppercase;}
+    .date-btn .d{font-family:var(--font-display);font-size:24px;font-weight:600;color:var(--ink);line-height:1.05;}
+    .date-btn .w{font-size:10px;font-weight:600;letter-spacing:.08em;color:var(--faint);text-transform:uppercase;}
+    .date-btn:hover{border-color:var(--ink);transform:translateY(-2px);}
+    /* .date-btn.active{background:var(--ink);border-color:var(--ink);}
+    .date-btn.active .m,.date-btn.active .w{color:rgba(243,240,233,.6);}
+    .date-btn.active .d{color:var(--paper);} */
+    
+    .date-btn.active{background:#0b7a5f;border-color:#0b7a5f;}
+    .date-btn.active .m,.date-btn.active .w{color:rgba(255,255,255,.75);}
+    .date-btn.active .d{color:#fff;}
+    /* ===== HERO ===== */
+    .hero-date{
+      font-family:var(--font-display);font-size:38px;font-weight:500;color:var(--ink);
+      margin:4px 0 8px;letter-spacing:-.01em;line-height:1.15;
+    }
+    .hero-date::before{
+      content:"DUTY LEDGER";display:block;font-family:var(--font-mono);font-size:9.5px;
+      letter-spacing:.32em;color:var(--emerald);font-weight:500;margin-bottom:10px;
+    }
+    .hero-date em{font-style:italic;font-weight:400;}
+    .hero-date .hd-sep{color:var(--line-strong);font-weight:400;margin:0 14px;font-size:24px;vertical-align:middle;}
+    .hero-sub{font-size:14px;color:var(--muted);margin-bottom:34px;max-width:560px;line-height:1.55;}
+
+    /* ===== STAT CHIPS ===== */
+    .stat-row{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:14px;margin-bottom:40px;
+    }
+    .stat-chip{
+      background:var(--surface);border:1px solid var(--line);border-radius:12px;
+      padding:22px 22px 20px;display:flex;flex-direction:column;gap:8px;
+      position:relative;overflow:hidden;
+      transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
+    }
+    .stat-chip:hover{
+      transform:translateY(-3px);border-color:var(--line-strong);
+      box-shadow:0 16px 32px -20px rgba(33,29,21,.3);
+    }
+    .stat-chip::before{content:"";position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--faint);}
+    .stat-chip .n{font-family:var(--font-display);font-size:42px;font-weight:600;line-height:1;color:var(--ink);}
+    .stat-chip .l{font-family:var(--font-mono);font-size:10px;color:var(--muted);letter-spacing:.16em;text-transform:uppercase;}
+    .stat-chip.eu::before{background:var(--emerald);}
+    .stat-chip.glo::before{background:var(--gold);}
+    .stat-chip.udp::before{background:var(--plum);}
+
+    /* ===== SHIFT GROUPS ===== */
+    .shift-group{
+      border:1px solid var(--line);border-radius:14px;background:var(--surface);
+      margin-bottom:22px;overflow:hidden;
+    }
+        .shift-group.off-group{opacity:.75;border-style:dashed;}
+    .shift-group-header{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:16px 22px;background:var(--surface-alt);border-bottom:1px solid var(--line);
+    }
+    .shift-group-header .name{
+      font-family:var(--font-display);font-weight:600;font-size:21px;color:var(--ink);
+      display:flex;align-items:center;gap:12px;
+    }
+    .shift-group-header .name::before{
+      content:"";width:7px;height:7px;background:var(--emerald);transform:rotate(45deg);flex-shrink:0;
+    }
+    .shift-group.off-group .shift-group-header .name::before{background:var(--faint);}
+    .shift-group-header .count{
+      font-family:var(--font-mono);font-size:10px;color:var(--muted);background:var(--surface);
+      border:1px solid var(--line);border-radius:999px;padding:6px 14px;
+      letter-spacing:.14em;text-transform:uppercase;
+    }
+    /* OFF group — soft red tint */
+    .shift-group.off-group{border-style:dashed;border-color:#e0b4ab;opacity:.9;}
+    .shift-group.off-group .shift-group-header{background:#f5e0da;border-bottom-color:#e0b4ab;}
+    .shift-group.off-group .shift-group-header .name{color:#a34a38;}
+    .shift-group.off-group .shift-group-header .name::before{background:#c98d80;}
+    .shift-group.off-group .shift-group-header .count{
+      color:#a34a38;background:rgba(255,255,255,.55);border-color:#e0b4ab;
+    }
+    .shift-group.off-group .agent-row{background:#faf0ec;}
+    .shift-group.off-group .agent-row:hover{background:#f5e2dc;}
+    .agent-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--line);}
+    .agent-row{
+      background:var(--surface);display:flex;align-items:center;gap:14px;
+      padding:15px 22px;font-size:14px;transition:background-color .15s ease;min-width:0;
+    }
+    .agent-row:hover{background:var(--surface-alt);}
+
+    .avatar{
+      width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+      font-family:var(--font-display);font-weight:600;font-size:13px;flex-shrink:0;border:1px solid transparent;
+    }
+    .avatar.eu{background:var(--emerald-dim);color:var(--emerald);border-color:rgba(13,92,70,.28);}
+    .avatar.glo{background:var(--gold-dim);color:var(--gold);border-color:rgba(141,106,38,.28);}
+    .avatar.udp{background:var(--plum-dim);color:var(--plum);border-color:rgba(106,77,115,.28);}
+    .avatar.other{background:var(--raised);color:var(--muted);border-color:rgba(33,29,21,.14);}
+
+    .agent-info{min-width:0;display:flex;flex-direction:column;gap:2px;flex:1;}
+    .agent-info .name{color:var(--ink);font-weight:600;white-space:normal;word-break:break-word;line-height:1.3;}
+    .agent-info .sysid{font-family:var(--font-mono);color:var(--faint);font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:.03em;}
+
+    .pill{
+      display:inline-block;padding:4px 11px;border-radius:999px;font-size:10px;font-weight:700;
+      letter-spacing:.1em;font-family:var(--font-body);text-transform:uppercase;flex-shrink:0;border:1px solid transparent;
+    }
+    .pill.eu{background:var(--emerald-dim);color:var(--emerald);border-color:rgba(13,92,70,.22);}
+    .pill.glo{background:var(--gold-dim);color:var(--gold);border-color:rgba(141,106,38,.22);}
+    .pill.udp{background:var(--plum-dim);color:var(--plum);border-color:rgba(106,77,115,.22);}
+    .pill.other{background:var(--info-dim);color:var(--info);border-color:rgba(74,96,118,.22);}
+    .pill.off{background:var(--raised);color:var(--muted);border-color:rgba(33,29,21,.12);}
+
+
+    /* ===== REGION CARDS (Today view) ===== */
+    .region-card{
+      border:1px solid var(--line);border-radius:16px;background:var(--surface);
+      margin-bottom:26px;overflow:hidden;scroll-margin-top:16px;
+    }
+    .region-head{
+      width:100%;display:flex;align-items:center;gap:16px;text-align:left;cursor:pointer;
+      padding:20px 24px;border:none;background:var(--surface-alt);color:var(--ink);
+      border-bottom:1px solid var(--line);border-left:5px solid var(--faint);
+      font-family:var(--font-body);
+    }
+    .region-head:hover{background:var(--raised);}
+    .region-card.eu .region-head{border-left-color:var(--emerald);background:var(--emerald-dim);}
+    .region-card.glo .region-head{border-left-color:var(--gold);background:var(--gold-dim);}
+    .region-card.udp .region-head{border-left-color:var(--plum);background:var(--plum-dim);}
+    .region-card.eu .rg-name{color:var(--emerald);}
+    .region-card.glo .rg-name{color:var(--gold);}
+    .region-card.udp .rg-name{color:var(--plum);}
+    .rg-name{font-family:var(--font-display);font-size:28px;font-weight:600;letter-spacing:.02em;}
+    .rg-meta{
+      margin-left:auto;font-family:var(--font-mono);font-size:10.5px;color:var(--muted);
+      letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;
+    }
+    .rg-meta b{font-size:15px;color:var(--ink);letter-spacing:0;margin-right:2px;}
+    .rg-chev{font-size:16px;color:var(--muted);transition:transform .25s var(--ease);}
+    .region-card.collapsed .rg-chev{transform:rotate(-90deg);}
+    .region-card.collapsed .region-head{border-bottom-color:transparent;}
+    .region-card.collapsed .region-body{display:none;}
+    .region-body{padding:18px 18px 0;}
+    .region-body .shift-group{margin-bottom:18px;}
+    .region-empty{padding:6px 6px 24px;color:var(--muted);font-size:13px;}
+    .stat-chip[data-region]{cursor:pointer;}
+    @media(max-width:600px){
+      .region-head{padding:16px 16px;gap:10px;flex-wrap:wrap;}
+      .rg-name{font-size:23px;}
+      .region-body{padding:12px 10px 0;}
+    }
+
+    /* ===== FILTERS ===== */
+    .filters{
+      display:flex;flex-wrap:wrap;gap:16px;margin-bottom:24px;align-items:flex-end;
+      background:var(--surface);padding:22px;border:1px solid var(--line);border-radius:14px;
+    }
+    .field{display:flex;flex-direction:column;gap:7px;min-width:150px;flex:1;}
+    .field.grow{flex:1 1 220px;}
+    .field label{
+      font-family:var(--font-mono);font-size:9.5px;color:var(--muted);font-weight:500;
+      letter-spacing:.18em;text-transform:uppercase;
+    }
+    select,input[type="text"],input[type="date"]{
+      background:var(--surface);border:1px solid var(--line-strong);color:var(--ink);
+      border-radius:9px;padding:11px 13px;font-size:14px;font-family:var(--font-body);font-weight:500;
+      outline:none;transition:border-color .15s ease,box-shadow .15s ease;width:100%;
+    }
+    select:focus,input[type="text"]:focus,input[type="date"]:focus{
+      border-color:var(--ink);box-shadow:0 0 0 3px rgba(33,29,21,.08);
+    }
+    select{
+      cursor:pointer;appearance:none;-webkit-appearance:none;padding-right:34px;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%236f6857' stroke-width='1.5'/%3E%3C/svg%3E");
+      background-repeat:no-repeat;background-position:right 14px center;
+    }
+    input[type="date"]{cursor:pointer;}
+
+    .clear-btn,.reset-btn,.page-btn{
+      align-self:flex-end;background:transparent;border:1px solid var(--line-strong);color:var(--ink);
+      border-radius:9px;padding:11px 22px;font-size:11.5px;font-weight:700;letter-spacing:.12em;
+      text-transform:uppercase;font-family:var(--font-body);cursor:pointer;transition:all .18s ease;
+    }
+    .clear-btn:hover,.reset-btn:hover,.page-btn:hover:not(:disabled){
+      background:var(--ink);border-color:var(--ink);color:var(--paper);
+    }
+    .page-btn:disabled{opacity:.35;cursor:not-allowed;}
+
+    /* ===== SALARY PANEL ===== */
+    .salary-panel{
+      border:1px solid var(--line);border-radius:14px;background:var(--surface);
+      margin-bottom:24px;overflow:hidden;
+    }
+    .salary-panel-toggle{
+      width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;
+      padding:16px 22px;background:transparent;border:none;cursor:pointer;
+      font-family:var(--font-body);text-align:left;transition:background-color .12s ease;
+    }
+    .salary-panel-toggle:hover{background:var(--surface-alt);}
+    .salary-panel-toggle-left{display:flex;align-items:center;gap:13px;min-width:0;}
+    .salary-icon{
+      width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--paper);
+      display:flex;align-items:center;justify-content:center;font-family:var(--font-display);
+      font-weight:600;font-size:15px;flex-shrink:0;
+    }
+    .salary-panel-title{font-size:14.5px;font-weight:700;color:var(--ink);letter-spacing:.02em;}
+    .salary-panel-toggle-right{display:flex;align-items:center;gap:14px;flex-shrink:0;}
+    .salary-preview{font-family:var(--font-display);font-size:17px;font-weight:600;color:var(--emerald);}
+    .salary-panel-chevron{color:var(--faint);font-size:20px;line-height:1;transition:transform .2s ease;}
+    .salary-panel.open .salary-panel-chevron{transform:rotate(90deg);}
+    .salary-panel-body{padding:4px 22px 22px;border-top:1px solid var(--line);}
+    .salary-panel .stats-grid{margin-bottom:0;}
+
+    .kpi-field{margin:18px 0 22px;}
+    .kpi-field-label{
+      display:block;font-family:var(--font-mono);font-size:9.5px;color:var(--muted);font-weight:500;
+      margin-bottom:9px;letter-spacing:.18em;text-transform:uppercase;
+    }
+    .kpi-options{display:flex;gap:10px;}
+    .kpi-option{
+      display:flex;flex-direction:column;align-items:flex-start;gap:4px;flex:1 1 0;
+      background:var(--surface);border:1px solid var(--line);border-radius:10px;
+      padding:12px 16px;font-family:var(--font-body);cursor:pointer;transition:all .18s ease;
+    }
+    .kpi-option:hover{border-color:var(--ink);}
+    .kpi-option-name{font-size:13.5px;font-weight:700;color:var(--ink);}
+    .kpi-option-amt{font-family:var(--font-mono);font-size:11px;color:var(--muted);}
+    .kpi-option.active{background:var(--ink);border-color:var(--ink);}
+    .kpi-option.active .kpi-option-name{color:var(--paper);}
+    .kpi-option.active .kpi-option-amt{color:rgba(243,240,233,.65);}
+
+    /* ===== SUMMARY / TABLES ===== */
+    .summary{font-size:13px;color:var(--muted);margin-bottom:14px;}
+    .summary b{color:var(--ink);font-weight:700;}
+
+    .table-header{
+      font-family:var(--font-display);font-size:21px;font-weight:600;margin-bottom:16px;
+      color:var(--ink);display:flex;align-items:center;gap:12px;
+    }
+    .table-header span.badge{
+      font-family:var(--font-mono);font-size:10px;background:var(--surface);color:var(--muted);
+      padding:5px 12px;border-radius:999px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+      border:1px solid var(--line);
+    }
+
+    .table-shell{
+      border:1px solid var(--line);border-radius:14px;overflow:auto;background:var(--surface);
+    }
+    .table-shell::-webkit-scrollbar{height:8px;}
+    .table-shell::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:99px;}
+    table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:640px;}
+    thead th{
+      position:sticky;top:0;background:var(--surface);text-align:left;padding:13px 18px;
+      font-family:var(--font-mono);font-weight:500;font-size:9.5px;color:var(--muted);
+      border-bottom:2px solid var(--ink);white-space:nowrap;text-transform:uppercase;letter-spacing:.16em;
+    }
+    tbody td{padding:13px 18px;border-bottom:1px solid var(--line);white-space:nowrap;color:var(--ink);}
+    tbody tr:hover{background:var(--surface-alt);}
+    tbody tr:last-child td{border-bottom:none;}
+    .off-row td{color:var(--faint);}
+    .off-tag{color:var(--faint);font-style:normal;font-size:12px;letter-spacing:.08em;}
+
+    #schedTable td:nth-child(1){font-weight:600;}
+    #schedTable td:nth-child(3){font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:.03em;}
+    #schedTable td:nth-child(4){font-weight:600;}
+
+    thead th[data-sort]{cursor:pointer;user-select:none;transition:color .12s ease;}
+    thead th[data-sort]:hover{color:var(--ink);}
+    .sort-arrow{display:inline-block;margin-left:5px;font-size:9px;color:var(--faint);}
+    .sort-arrow.active{color:var(--emerald);}
+
+    .pagination-bar{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      margin-top:16px;flex-wrap:wrap;
+    }
+    .pagination-info{font-family:var(--font-mono);font-size:10.5px;color:var(--muted);letter-spacing:.05em;}
+    .pagination-controls{display:flex;align-items:center;gap:10px;}
+    .page-indicator{font-size:12.5px;color:var(--muted);font-weight:600;white-space:nowrap;}
+
+    .state-msg{
+      padding:56px 20px;text-align:center;color:var(--muted);font-size:16px;
+      font-family:var(--font-display);font-style:italic;background:var(--surface);
+      border:1px dashed var(--line-strong);border-radius:14px;
+    }
+    .state-msg.error{color:var(--danger);border-color:var(--danger);font-style:normal;font-family:var(--font-body);font-size:14px;}
+
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:30px;}
+    .stat-card{
+      background:var(--surface);border:1px solid var(--line);border-radius:12px;
+      padding:18px 20px;display:flex;flex-direction:column;gap:6px;
+    }
+    .stat-card .label{font-family:var(--font-mono);font-size:9.5px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.16em;}
+    .stat-card .value{font-family:var(--font-display);font-size:30px;font-weight:600;color:var(--ink);line-height:1.1;}
+    .stat-card .sub{font-size:11.5px;color:var(--faint);}
+    .stat-card.highlight{border-top:2px solid var(--info);}
+    .stat-card.success{border-top:2px solid var(--emerald);}
+    .stat-card.warning{border-top:2px solid var(--gold);}
+    .stat-card.neutral{border-top:2px solid var(--plum);}
+
+    footer.note{
+      margin-top:60px;padding-top:18px;border-top:1px solid var(--line);
+      font-family:var(--font-mono);font-size:10px;color:var(--faint);
+      letter-spacing:.08em;text-align:center;line-height:1.8;text-transform:uppercase;
+    }
+
+    /* ===== HOLIDAY PICKER ===== */
+    .holiday-field{margin:0 0 22px;}
+    .holiday-field-label{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:9px;}
+    .holiday-field-label span.lbl{
+      font-family:var(--font-mono);font-size:9.5px;color:var(--muted);font-weight:500;
+      letter-spacing:.18em;text-transform:uppercase;
+    }
+    .holiday-clear-link{
+      background:none;border:none;color:var(--danger);font-size:11px;font-weight:700;cursor:pointer;
+      padding:0;text-decoration:underline;letter-spacing:.06em;text-transform:uppercase;
+    }
+    .holiday-open-btn{
+      background:var(--surface);border:1px solid var(--line-strong);color:var(--ink);
+      border-radius:9px;padding:12px 16px;font-size:12px;font-weight:700;cursor:pointer;
+      display:inline-flex;align-items:center;gap:8px;transition:all .18s ease;width:100%;
+      justify-content:center;letter-spacing:.1em;text-transform:uppercase;
+    }
+    .holiday-open-btn:hover{background:var(--gold-dim);border-color:var(--gold);color:var(--gold);}
+    .holiday-chip-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+    .holiday-chip{
+      display:inline-flex;align-items:center;gap:6px;background:var(--gold-dim);color:var(--gold);
+      font-family:var(--font-mono);font-size:10.5px;font-weight:500;padding:4px 8px 4px 11px;
+      border-radius:999px;border:1px solid rgba(141,106,38,.25);letter-spacing:.04em;
+    }
+    .holiday-chip button{background:none;border:none;color:var(--gold);cursor:pointer;font-size:13px;line-height:1;padding:0;font-weight:700;}
+    .holiday-empty-note{font-size:12px;color:var(--faint);margin-top:10px;font-style:italic;}
+
+    .holiday-modal-overlay{
+      position:fixed;inset:0;background:rgba(33,29,21,.45);backdrop-filter:blur(3px);
+      display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px;
+    }
+    .holiday-modal{
+      background:var(--surface);border-radius:16px;width:100%;max-width:340px;padding:22px;
+      box-shadow:0 30px 80px -20px rgba(33,29,21,.5);
+    }
+    .holiday-modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+    .holiday-modal-title{font-family:var(--font-display);font-weight:600;font-size:18px;color:var(--ink);}
+    .holiday-modal-close{background:none;border:none;color:var(--faint);font-size:22px;line-height:1;cursor:pointer;padding:0;}
+    .holiday-modal-close:hover{color:var(--ink);}
+    .holiday-cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+    .holiday-cal-nav button{
+      background:var(--surface);border:1px solid var(--line-strong);color:var(--ink);width:30px;height:30px;
+      border-radius:8px;cursor:pointer;font-size:15px;line-height:1;display:flex;align-items:center;
+      justify-content:center;transition:all .15s ease;
+    }
+    .holiday-cal-nav button:hover{border-color:var(--gold);color:var(--gold);}
+    .holiday-cal-nav .cal-title{font-family:var(--font-display);font-weight:600;font-size:16px;color:var(--ink);}
+    .holiday-cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:18px;}
+    .holiday-cal-grid .dow{
+      text-align:center;font-family:var(--font-mono);font-size:9px;font-weight:500;color:var(--faint);
+      text-transform:uppercase;letter-spacing:.1em;padding:4px 0 6px;
+    }
+    .holiday-cal-day{
+      aspect-ratio:1;display:flex;align-items:center;justify-content:center;
+      background:var(--surface-alt);border:1px solid var(--line);border-radius:8px;
+      font-size:13px;color:var(--ink);cursor:pointer;transition:all .12s ease;min-height:34px;
+    }
+    .holiday-cal-day:hover{border-color:var(--gold);}
+    .holiday-cal-day.empty{background:transparent;border:none;cursor:default;}
+    .holiday-cal-day.today{border-color:var(--ink);font-weight:600;}
+    .holiday-cal-day.selected{background:var(--gold);border-color:var(--gold);color:#fff;font-weight:700;}
+    .holiday-modal-footer{display:flex;gap:10px;justify-content:flex-end;}
+    .holiday-modal-cancel,.holiday-modal-ok{
+      border-radius:9px;padding:10px 18px;font-size:12px;font-weight:700;cursor:pointer;
+      font-family:var(--font-body);letter-spacing:.08em;text-transform:uppercase;transition:all .18s ease;
+    }
+    .holiday-modal-cancel{background:transparent;border:1px solid var(--line-strong);color:var(--muted);}
+    .holiday-modal-cancel:hover{border-color:var(--ink);color:var(--ink);}
+    .holiday-modal-ok{background:var(--emerald);border:1px solid var(--emerald);color:#fff;}
+    .holiday-modal-ok:hover{background:var(--emerald-deep);border-color:var(--emerald-deep);}
+
+    /* ===== CALENDAR VIEW ===== */
+    .cal-header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px;}
+    .cal-title{font-family:var(--font-display);font-size:26px;font-weight:600;color:var(--ink);}
+    .cal-nav{display:flex;gap:8px;}
+    .cal-nav button{
+      background:var(--surface);border:1px solid var(--line-strong);color:var(--ink);border-radius:9px;
+      padding:9px 15px;font-size:11.5px;font-weight:700;font-family:var(--font-body);cursor:pointer;
+      transition:all .18s ease;letter-spacing:.08em;text-transform:uppercase;
+    }
+    .cal-nav button:hover{background:var(--ink);border-color:var(--ink);color:var(--paper);}
+    .cal-legend{
+      display:flex;gap:18px;flex-wrap:wrap;margin-bottom:16px;font-family:var(--font-mono);
+      font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;
+    }
+    .cal-legend span{display:inline-flex;align-items:center;gap:7px;}
+    .cal-legend i{width:8px;height:8px;border-radius:50%;display:inline-block;}
+    .cal-legend i.eu{background:var(--emerald);}
+    .cal-legend i.glo{background:var(--gold);}
+    .cal-legend i.udp{background:var(--plum);}
+    .cal-legend i.other{background:var(--faint);}
+
+    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;}
+    .cal-dow{
+      text-align:center;font-family:var(--font-mono);font-size:9.5px;font-weight:500;color:var(--muted);
+      text-transform:uppercase;letter-spacing:.14em;padding:4px 0;
+    }
+    .cal-cell{
+      background:var(--surface);border:1px solid var(--line);border-radius:10px;
+      min-height:112px;padding:8px;display:flex;flex-direction:column;gap:4px;
+      transition:border-color .15s ease;
+    }
+    .cal-cell[data-key]{cursor:pointer;}
+    .cal-cell[data-key]:hover{border-color:var(--line-strong);}
+    .cal-cell.other-month{opacity:.4;background:transparent;border-style:dashed;}
+    .cal-cell.is-today{border:1px solid var(--ink);box-shadow:inset 0 0 0 1px var(--ink);}
+    .cal-cell.is-sel{border-color:var(--emerald);background:var(--emerald-dim);}
+    .cal-day-num{font-family:var(--font-display);font-size:13px;font-weight:600;color:var(--muted);}
+    .cal-cell.is-today .cal-day-num{color:var(--ink);}
+    .cal-agents{display:flex;flex-direction:column;gap:3px;overflow:hidden;}
+    .cal-agent{display:flex;align-items:center;gap:5px;min-width:0;}
+    .cal-agent i{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+    .cal-agent i.eu{background:var(--emerald);}
+    .cal-agent i.glo{background:var(--gold);}
+    .cal-agent i.udp{background:var(--plum);}
+    .cal-agent i.other{background:var(--faint);}
+    .cal-agent .nm{font-size:10.5px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .cal-more{font-family:var(--font-mono);font-size:9.5px;color:var(--muted);letter-spacing:.06em;}
+    .cal-offn{font-family:var(--font-mono);font-size:9px;color:var(--faint);letter-spacing:.06em;}
+
+    /* ===== SWAP HELPER ===== */
+    .swap-me{
+      border:1px solid var(--line);border-radius:14px;background:var(--surface);
+      padding:18px 22px;margin-bottom:8px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    }
+    .swap-me .who{font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--ink);}
+    .swap-me .meta{font-size:13px;color:var(--muted);}
+    .swap-list-title{
+      font-family:var(--font-display);font-size:18px;font-weight:600;margin:22px 0 12px;
+      color:var(--ink);display:flex;align-items:center;gap:10px;
+    }
+    .swap-list-title span.badge{
+      font-family:var(--font-mono);font-size:10px;background:var(--surface);color:var(--muted);
+      padding:4px 11px;border-radius:999px;font-weight:500;border:1px solid var(--line);letter-spacing:.1em;text-transform:uppercase;
+    }
+    .swap-item{
+      background:var(--surface);border:1px solid var(--line);border-radius:12px;
+      padding:13px 17px;margin-bottom:8px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+      transition:border-color .15s ease;
+    }
+    .swap-item:hover{border-color:var(--line-strong);}
+    .swap-item .info{flex:1;min-width:160px;}
+    .swap-item .nm{font-weight:700;font-size:14px;color:var(--ink);}
+    .swap-item .sid{font-family:var(--font-mono);font-size:10.5px;color:var(--faint);letter-spacing:.03em;}
+    .swap-item .why{
+      font-family:var(--font-mono);font-size:9.5px;font-weight:500;padding:4px 10px;border-radius:999px;
+      letter-spacing:.1em;text-transform:uppercase;border:1px solid transparent;
+    }
+    .swap-item .why.off{background:var(--emerald-dim);color:var(--emerald);border-color:rgba(13,92,70,.22);}
+    .swap-item .why.diff{background:var(--info-dim);color:var(--info);border-color:rgba(74,96,118,.22);}
+
+    /* ===== SWAP REQUEST — button + status pills ===== */
+    .swap-req-btn{
+      background:var(--ink);color:var(--paper);border:1px solid var(--ink);border-radius:8px;
+      padding:8px 14px;font-size:10.5px;font-weight:700;font-family:var(--font-body);cursor:pointer;
+      letter-spacing:.1em;text-transform:uppercase;transition:all .18s ease;flex:0 0 auto;
+    }
+    .swap-req-btn:hover{background:var(--emerald-deep);border-color:var(--emerald-deep);}
+    .swap-req-btn:disabled{opacity:.45;cursor:not-allowed;}
+    .status-pill{
+      font-family:var(--font-mono);font-size:9.5px;font-weight:600;padding:5px 11px;border-radius:999px;
+      letter-spacing:.1em;text-transform:uppercase;border:1px solid transparent;flex:0 0 auto;
+    }
+    .status-pill.pending{background:var(--gold-dim);color:var(--gold);border-color:rgba(141,106,38,.28);}
+    .status-pill.approved{background:var(--emerald-dim);color:var(--emerald);border-color:rgba(13,92,70,.22);}
+    .status-pill.rejected{background:var(--danger-dim);color:var(--danger);border-color:rgba(166,61,47,.24);}
+    .my-swap-reqs{margin:26px 0 6px;}
+    .swap-req-row{
+      background:var(--surface);border:1px solid var(--line);border-radius:12px;
+      padding:12px 16px;margin-bottom:8px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+    }
+    .swap-req-row .rq-info{flex:1;min-width:180px;font-size:13px;color:var(--ink);}
+    .swap-req-row .rq-info b{font-weight:700;}
+    .swap-req-row .rq-date{font-family:var(--font-mono);font-size:10.5px;color:var(--faint);letter-spacing:.03em;display:block;margin-top:2px;}
+
+    /* ===== ADMIN VIEW ===== */
+    .admin-gate{
+      max-width:360px;margin:60px auto;text-align:center;border:1px solid var(--line);
+      border-radius:16px;background:var(--surface);padding:36px 30px;
+    }
+    .admin-gate .lock-title{font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--ink);margin-bottom:6px;}
+    .admin-gate .lock-sub{font-size:12.5px;color:var(--muted);margin-bottom:20px;line-height:1.5;}
+    .admin-gate input[type="password"]{
+      width:100%;padding:12px 14px;border:1px solid var(--line-strong);border-radius:9px;
+      font-family:var(--font-mono);font-size:14px;letter-spacing:.1em;text-align:center;margin-bottom:14px;
+      background:var(--paper);color:var(--ink);
+    }
+    .admin-panel-row{
+      background:var(--surface);border:1px solid var(--line);border-radius:14px;
+      padding:16px 18px;margin-bottom:10px;
+    }
+    .admin-panel-row .apr-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:8px;}
+    .admin-panel-row .apr-date{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:.05em;}
+    .admin-panel-row .apr-body{font-size:14px;color:var(--ink);margin-bottom:12px;}
+    .admin-panel-row .apr-body b{font-family:var(--font-display);font-weight:600;}
+    .admin-panel-row .apr-actions{display:flex;gap:8px;}
+    .apr-approve, .apr-reject{
+      border-radius:8px;padding:9px 18px;font-size:11px;font-weight:700;font-family:var(--font-body);
+      cursor:pointer;letter-spacing:.1em;text-transform:uppercase;transition:all .18s ease;border:1px solid;
+    }
+    .apr-approve{background:var(--emerald);border-color:var(--emerald);color:#fff;}
+    .apr-approve:hover{background:var(--emerald-deep);border-color:var(--emerald-deep);}
+    .apr-reject{background:transparent;border-color:var(--danger);color:var(--danger);}
+    .apr-reject:hover{background:var(--danger-dim);}
+    .apr-approve:disabled, .apr-reject:disabled{opacity:.45;cursor:not-allowed;}
+
+    /* ===== OT ===== */
+    #salaryGrid{grid-template-columns:repeat(5,1fr);}
+    .ot-log-item{
+      display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;font-size:13px;
+      color:var(--ink);padding:8px 0;border-bottom:1px dashed var(--line);
+    }
+    .ot-log-item:last-child{border-bottom:none;}
+    .ot-log-item .ot-date{font-family:var(--font-mono);font-size:11.5px;font-weight:500;min-width:95px;letter-spacing:.04em;}
+    .ot-log-item .ot-amt{margin-left:auto;font-weight:700;color:var(--emerald);}
+    .ot-tag{
+      display:inline-block;margin-left:6px;padding:3px 9px;border-radius:999px;
+      font-family:var(--font-mono);font-size:9px;font-weight:500;background:var(--gold-dim);
+      color:var(--gold);border:1px solid rgba(141,106,38,.3);vertical-align:middle;letter-spacing:.08em;
+    }
+    .swap-tag{
+      display:inline-block;margin-left:6px;padding:3px 9px;border-radius:999px;
+      font-family:var(--font-mono);font-size:9px;font-weight:500;background:var(--info-dim);
+      color:var(--info);border:1px solid rgba(74,96,118,.3);vertical-align:middle;letter-spacing:.08em;
+    }
+
+    .ot-hero{
+      display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:30px;
+      padding-bottom:20px;border-bottom:1px solid var(--line);
+    }
+    .ot-hero-title{font-family:var(--font-display);font-size:32px;font-weight:600;color:var(--ink);letter-spacing:-.01em;}
+    .ot-hero-sub{font-size:13.5px;color:var(--muted);margin-top:8px;}
+    .ot-add-btn{
+      background:var(--ink);color:var(--paper);border:1px solid var(--ink);border-radius:10px;
+      padding:13px 26px;font-size:12px;font-weight:700;font-family:var(--font-body);cursor:pointer;
+      display:inline-flex;align-items:center;gap:8px;letter-spacing:.12em;text-transform:uppercase;
+      transition:all .18s ease;
+    }
+    .ot-add-btn:hover{background:var(--emerald-deep);border-color:var(--emerald-deep);transform:translateY(-2px);}
+    .ot-add-btn:active{transform:translateY(0);}
+
+    #otSummaryTable td:nth-child(3),
+    #otSummaryTable td:nth-child(4),
+    #otSummaryTable td:nth-child(5){text-align:right;}
+    #otSummaryTable tfoot td{font-weight:700;background:var(--surface-alt);border-top:2px solid var(--ink);}
+    #otSummaryTable .ot-agent-cell{display:flex;align-items:center;gap:12px;min-width:0;}
+    #otSummaryTable .ot-agent-cell .avatar{width:32px;height:32px;font-size:11px;}
+
+    .ot-modal-overlay{
+      position:fixed;inset:0;background:rgba(33,29,21,.45);backdrop-filter:blur(3px);
+      display:flex;align-items:center;justify-content:center;z-index:1100;padding:20px;
+    }
+    .ot-modal{
+      background:var(--surface);border-radius:16px;width:100%;max-width:400px;
+      box-shadow:0 30px 80px -20px rgba(33,29,21,.5);overflow:hidden;
+    }
+    .ot-modal-header{
+      display:flex;align-items:center;justify-content:space-between;padding:18px 22px;
+      border-bottom:1px solid var(--line);background:var(--surface-alt);
+    }
+    .ot-modal-title{font-family:var(--font-display);font-weight:600;font-size:18px;color:var(--ink);}
+    .ot-modal-close{background:none;border:none;color:var(--faint);font-size:22px;line-height:1;cursor:pointer;padding:0;}
+    .ot-modal-close:hover{color:var(--ink);}
+    .ot-modal-body{padding:20px 22px 8px;display:flex;flex-direction:column;gap:14px;}
+    .ot-modal-body .field{min-width:0;}
+    .ot-modal-msg{padding:6px 22px 4px;font-size:13px;min-height:20px;}
+    .ot-modal-msg.ok{color:var(--emerald);font-weight:700;}
+    .ot-modal-msg.err{color:var(--danger);font-weight:700;}
+    .ot-modal-footer{display:flex;gap:10px;justify-content:flex-end;padding:16px 22px 20px;}
+    .ot-modal-cancel{
+      background:transparent;border:1px solid var(--line-strong);color:var(--muted);border-radius:9px;
+      padding:10px 18px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font-body);
+      letter-spacing:.08em;text-transform:uppercase;transition:all .18s ease;
+    }
+    .ot-modal-cancel:hover{border-color:var(--ink);color:var(--ink);}
+    .ot-modal-save{
+      background:var(--emerald);border:1px solid var(--emerald);color:#fff;border-radius:9px;
+      padding:10px 24px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font-body);
+      letter-spacing:.08em;text-transform:uppercase;transition:all .18s ease;
+    }
+    .ot-modal-save:hover{background:var(--emerald-deep);border-color:var(--emerald-deep);}
+    .ot-modal-save:disabled{opacity:.5;cursor:not-allowed;}
+
+    /* ===== MOTION (transform/opacity only — lag-free) ===== */
+    @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+    @keyframes viewIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    @media (prefers-reduced-motion:no-preference){
+      .stat-chip,.shift-group,.swap-me,.swap-item{animation:rise .5s var(--ease) both;}
+      .stat-chip:nth-child(1){animation-delay:.04s}
+      .stat-chip:nth-child(2){animation-delay:.1s}
+      .stat-chip:nth-child(3){animation-delay:.16s}
+      .stat-chip:nth-child(4){animation-delay:.22s}
+      .shift-group:nth-child(1){animation-delay:.06s}
+      .shift-group:nth-child(2){animation-delay:.13s}
+      .shift-group:nth-child(3){animation-delay:.2s}
+      .shift-group:nth-child(4){animation-delay:.27s}
+      .shift-group:nth-child(5){animation-delay:.34s}
+      .view-in{animation:viewIn .4s var(--ease) both;}
+    }
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width:640px){
+      .wrap{padding:22px 16px 56px;}
+      header.top{padding-bottom:14px;}
+      header.top h1{font-size:31px;}
+      .tagline{font-size:8.5px;letter-spacing:.16em;margin-top:7px;}
+      .live-clock{font-size:15px;}
+      header.top .updated{font-size:9px;}
+            .view-nav{padding:5px;gap:6px;border-radius:14px;}
+      .nav-btn{font-size:10.5px;padding:10px 13px;border-radius:9px;letter-spacing:.1em;}
+      .nav-btn.active{box-shadow:3px 3px 8px rgba(163,154,133,.38), -3px -3px 8px rgba(255,255,255,.95);}
+      .date-btn{min-width:56px;padding:8px 10px;}
+      .hero-date{font-size:27px;}
+      .hero-date::before{font-size:8.5px;margin-bottom:6px;}
+      .hero-sub{font-size:12.5px;margin-bottom:24px;}
+      .ot-hero-title{font-size:23px;}
+      .ot-hero-sub{font-size:12.5px;}
+      .ot-add-btn{width:100%;justify-content:center;}
+      .filters{display:grid;grid-template-columns:1fr;gap:14px;padding:16px;}
+      .field{width:100%;min-width:100%;}
+      .clear-btn,.reset-btn{width:100%;text-align:center;}
+      .stat-chip .n{font-size:34px;}
+      .stats-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+      #salaryGrid{grid-template-columns:repeat(2,1fr);}
+      #salaryGrid .stat-card:last-child{grid-column:1/-1;}
+      .stat-card{padding:14px 16px;}
+      .stat-card .value{font-size:22px;}
+      .agent-list{grid-template-columns:1fr;}
+      .salary-panel-toggle{padding:13px 16px;}
+      .salary-preview{font-size:14px;}
+      .salary-panel-body{padding:4px 16px 16px;}
+      .kpi-field{margin:14px 0 16px;}
+      .kpi-options{flex-wrap:wrap;gap:8px;}
+      .kpi-option{flex:1 1 calc(50% - 4px);padding:10px 12px;}
+      .pagination-bar{flex-direction:column;align-items:stretch;text-align:center;}
+      .pagination-controls{justify-content:center;}
+      .holiday-modal{max-width:100%;padding:14px;}
+      .holiday-cal-day{min-height:30px;font-size:12px;}
+      .cal-grid{gap:4px;}
+      .cal-cell{min-height:84px;padding:5px;border-radius:8px;}
+      .cal-agent .nm{font-size:9.5px;}
+      /* schedule table → card layout */
+      #schedTableShell{border:none;box-shadow:none;background:transparent;overflow:visible;}
+      #schedTable{min-width:0;}
+      #schedTable thead{display:none;}
+      #schedTable tbody{display:block;}
+      #schedTable tr{
+        display:grid;grid-template-columns:1fr auto;
+        grid-template-areas:"agent region" "date shift" "sysid sysid";
+        row-gap:6px;column-gap:12px;align-items:center;background:var(--surface);
+        border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px;
+      }
+      #schedTable tr:last-child{margin-bottom:0;}
+      #schedTable td{display:block;padding:0;border-bottom:none;white-space:normal;}
+      #schedTable td:nth-child(1){grid-area:date;font-family:var(--font-mono);font-size:10.5px;font-weight:500;color:var(--muted);letter-spacing:.06em;}
+      #schedTable td:nth-child(2){grid-area:shift;font-size:11.5px;color:var(--muted);text-align:right;}
+      #schedTable td:nth-child(3){grid-area:sysid;font-family:var(--font-mono);font-size:10.5px;color:var(--faint);padding-top:8px;margin-top:2px;border-top:1px dashed var(--line);letter-spacing:.03em;}
+      #schedTable td:nth-child(4){grid-area:agent;font-family:var(--font-display);font-size:17px;font-weight:600;color:var(--ink);}
+      #schedTable td:nth-child(5){grid-area:region;justify-self:end;align-self:start;}
+      #schedTable .off-row{opacity:.75;}
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div>
+      <h1>CSA <em>Roster</em></h1>
+      <div class="tagline">Duty Ledger · Schedule · History · Overtime</div>
+    </div>
+    <div class="masthead-right">
+      <div class="live-clock" id="liveClock">--:--:--</div>
+      <div class="updated" id="updatedAt">Loading…</div>
+    </div>
+  </header>
+
+  <!-- Main Navigation Tabs -->
+  <nav class="view-nav">
+    <button class="nav-btn active" data-view="todayView">Today's Schedule</button>
+    <button class="nav-btn" data-view="detailsView">All Entries</button>
+    <button class="nav-btn" data-view="agentView">Agent History</button>
+    <button class="nav-btn" data-view="calendarView">Calendar</button>
+    <button class="nav-btn" data-view="swapView">Swap Helper</button>
+    <button class="nav-btn" data-view="otView">OT</button>
+    <button class="nav-btn" data-view="adminView">Admin</button>
+  </nav>
+
+  <!-- ========== TODAY VIEW ========== -->
+  <div id="todayView">
+    <div class="date-nav" id="dateNav"></div>
+
+    <div class="hero-date" id="heroDate">Loading date…</div>
+    <div class="hero-sub">Duty schedule for agents assigned on the selected date is shown below.</div>
+
+    <div class="stat-row" id="statRow"></div>
+
+    <div id="groupsHolder"></div>
+    <div class="state-msg" id="stateMsgToday">Loading…</div>
+  </div>
+
+  <!-- ========== DETAILS VIEW ========== -->
+  <div id="detailsView" style="display:none;">
+    <div class="filters">
+      <div class="field">
+        <label for="fMonth">Month</label>
+        <select id="fMonth"><option value="">All</option></select>
+      </div>
+      <div class="field">
+        <label for="fRegion">Region</label>
+        <select id="fRegion"><option value="">All</option></select>
+      </div>
+      <div class="field">
+        <label for="fShift">Shift</label>
+        <select id="fShift"><option value="">All</option></select>
+      </div>
+      <div class="field grow">
+        <label for="fAgent">Search Agent Name / System ID</label>
+        <input type="text" id="fAgent" placeholder="e.g. Milon Hossain">
+      </div>
+      <button class="clear-btn" id="clearBtn">Reset</button>
+    </div>
+
+    <div class="summary" id="summary"></div>
+
+    <div class="table-shell" id="schedTableShell">
+      <table id="schedTable" style="display:none">
+        <thead>
+          <tr>
+            <th data-sort="date">Date <span class="sort-arrow" id="sortArrow-date"></span></th>
+            <th data-sort="shift">Shift <span class="sort-arrow" id="sortArrow-shift"></span></th>
+            <th data-sort="systemId">System ID <span class="sort-arrow" id="sortArrow-systemId"></span></th>
+            <th data-sort="agentName">Agent Name <span class="sort-arrow" id="sortArrow-agentName"></span></th>
+            <th data-sort="region">Region <span class="sort-arrow" id="sortArrow-region"></span></th>
+          </tr>
+        </thead>
+        <tbody id="tbodyDetails"></tbody>
+      </table>
+      <div class="state-msg" id="stateMsgDetails">Loading…</div>
+    </div>
+
+    <div class="pagination-bar" id="detailsPagination"></div>
+  </div>
+
+  <!-- ========== AGENT HISTORY VIEW ========== -->
+  <div id="agentView" style="display:none;">
+    <div class="filters">
+      <div class="field grow">
+        <label for="agentSelect">Select Agent</label>
+        <select id="agentSelect"><option value="">Loading agents...</option></select>
+      </div>
+      <div class="field">
+        <label for="startDate">Start Date</label>
+        <input type="date" id="startDate">
+      </div>
+      <div class="field">
+        <label for="endDate">End Date</label>
+        <input type="date" id="endDate">
+      </div>
+      <button class="reset-btn" id="resetBtn">Reset Filters</button>
+    </div>
+
+    <div class="salary-panel" id="salaryPanel" style="display:none;">
+      <button class="salary-panel-toggle" id="toggleSalaryBtn" type="button" aria-expanded="false">
+        <span class="salary-panel-toggle-left">
+          <span class="salary-icon">৳</span>
+          <span class="salary-panel-title">Salary Summary</span>
+        </span>
+        <span class="salary-panel-toggle-right">
+          <span class="salary-preview" id="salaryPreview">৳0</span>
+          <span class="salary-panel-chevron">›</span>
+        </span>
+      </button>
+
+      <div class="salary-panel-body" id="salaryPanelBody" style="display:none;">
+        <div class="kpi-field">
+          <label class="kpi-field-label">KPI Category</label>
+          <div class="kpi-options" id="kpiOptions">
+            <button type="button" class="kpi-option active" data-kpi="">
+              <span class="kpi-option-name">None</span>
+              <span class="kpi-option-amt">—</span>
+            </button>
+            <button type="button" class="kpi-option" data-kpi="A">
+              <span class="kpi-option-name">A</span>
+              <span class="kpi-option-amt">৳2,700</span>
+            </button>
+            <button type="button" class="kpi-option" data-kpi="B">
+              <span class="kpi-option-name">B</span>
+              <span class="kpi-option-amt">৳2,025</span>
+            </button>
+            <button type="button" class="kpi-option" data-kpi="C">
+              <span class="kpi-option-name">C</span>
+              <span class="kpi-option-amt">৳675</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="holiday-field">
+          <div class="holiday-field-label">
+            <span class="lbl">Custom Holiday (duty that day pays +৳510 extra)</span>
+            <button type="button" class="holiday-clear-link" id="clearHolidaysBtn" style="display:none;">Clear all</button>
+          </div>
+          <button type="button" class="holiday-open-btn" id="openHolidayModalBtn">Select Holiday Dates</button>
+          <div class="holiday-chip-list" id="holidayChipList"></div>
+          <div class="holiday-empty-note" id="holidayEmptyNote">No custom holidays added yet.</div>
+        </div>
+
+        <div class="stats-grid" id="salaryGrid">
+          <div class="stat-card success">
+            <span class="label">Duty Days Pay</span>
+            <span class="value" id="salaryDutyPay">৳0</span>
+            <span class="sub" id="salaryDutySub">0 days × ৳590</span>
+          </div>
+          <div class="stat-card highlight">
+            <span class="label">Travel Allowance</span>
+            <span class="value" id="salaryTravel">৳0</span>
+            <span class="sub" id="salaryTravelSub">Based on shift timing</span>
+          </div>
+          <div class="stat-card">
+            <span class="label">Overtime (OT)</span>
+            <span class="value" id="salaryOT">৳0</span>
+            <span class="sub" id="salaryOTSub">No OT recorded</span>
+          </div>
+          <div class="stat-card warning">
+            <span class="label">KPI Bonus</span>
+            <span class="value" id="salaryKPI">৳0</span>
+            <span class="sub" id="salaryKPISub">No category selected</span>
+          </div>
+          <div class="stat-card neutral">
+            <span class="label">Grand Total</span>
+            <span class="value" id="salaryTotal">৳0</span>
+            <span class="sub">Salary + travel + OT + KPI</span>
+          </div>
+        </div>
+
+        <div id="otLogWrap" style="display:none; margin-top:16px;">
+          <div style="font-family:var(--font-mono); font-size:9.5px; font-weight:500; color:var(--muted); text-transform:uppercase; letter-spacing:.18em; margin-bottom:8px;">OT Entries (this range)</div>
+          <div id="otLogList"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-grid" id="statsGrid" style="display:none;">
+      <div class="stat-card success">
+        <span class="label">Total Duty Days</span>
+        <span class="value" id="statDutyDays">0</span>
+        <span class="sub">Within selected range</span>
+      </div>
+      <div class="stat-card neutral">
+        <span class="label">Total Off Days</span>
+        <span class="value" id="statOffDays">0</span>
+        <span class="sub">Total days minus duty days</span>
+      </div>
+      <div class="stat-card highlight">
+        <span class="label">Most Frequent Shift</span>
+        <span class="value" id="statTopShift" style="font-size:20px;">N/A</span>
+        <span class="sub" id="statTopShiftCount">No shifts worked</span>
+      </div>
+      <div class="stat-card warning">
+        <span class="label">Regions Worked</span>
+        <span class="value" id="statRegions" style="font-size:20px;">N/A</span>
+        <span class="sub">Active regions</span>
+      </div>
+    </div>
+
+    <div id="tableSection" style="display:none; margin-top:36px;">
+      <div class="table-header">
+        Shift History <span class="badge" id="resultCount">0 entries</span>
+      </div>
+      <div class="table-shell">
+        <table id="historyTable">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Day</th>
+              <th>Shift</th>
+              <th>Region</th>
+              <th>System ID</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyAgent"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="state-msg" id="stateMsgAgent">Please select an agent to view their shift history.</div>
+  </div>
+
+  <!-- ========== CALENDAR VIEW ========== -->
+  <div id="calendarView" style="display:none;">
+    <div class="cal-header">
+      <span class="cal-title" id="calTitle"></span>
+      <div class="cal-nav">
+        <button id="calPrev" type="button">‹ Prev</button>
+        <button id="calThis" type="button">This Month</button>
+        <button id="calNext" type="button">Next ›</button>
+      </div>
+    </div>
+    <div class="cal-legend">
+      <span><i class="eu"></i> EU</span>
+      <span><i class="glo"></i> GLO</span>
+      <span><i class="udp"></i> UDP</span>
+      <span><i class="other"></i> Other</span>
+    </div>
+    <div class="cal-grid" id="calGrid"></div>
+  </div>
+
+  <!-- ========== SWAP HELPER VIEW ========== -->
+  <div id="swapView" style="display:none;">
+    <div class="filters">
+      <div class="field">
+        <label for="swapDate">Duty Date</label>
+        <input type="date" id="swapDate">
+      </div>
+      <div class="field grow">
+        <label for="swapAgent">Your Name</label>
+        <select id="swapAgent"><option value="">— Select your name —</option></select>
+      </div>
+    </div>
+    <div id="swapResult"></div>
+    <div class="state-msg" id="swapMsg" style="display:block;">
+      Pick a date and your name to see swap-eligible agents (same region only).
+    </div>
+
+    <div class="my-swap-reqs" id="mySwapReqsWrap" style="display:none;">
+      <div class="swap-list-title">Your Swap Requests <span class="badge" id="mySwapReqsBadge">0</span></div>
+      <div id="mySwapReqsList"></div>
+    </div>
+  </div>
+
+  <!-- ========== OT VIEW ========== -->
+  <div id="otView" style="display:none;">
+    <div class="ot-hero">
+      <div>
+        <div class="ot-hero-title">Overtime Tracker</div>
+        <div class="ot-hero-sub">Team OT summary for the selected period — payment rate ৳61/hour.</div>
+      </div>
+      <button type="button" class="ot-add-btn" id="openOTModalBtn">Add OT Entry</button>
+    </div>
+
+    <div class="stat-row" id="otStatRow"></div>
+
+    <div class="filters">
+      <div class="field">
+        <label for="otStartDate">Start Date</label>
+        <input type="date" id="otStartDate">
+      </div>
+      <div class="field">
+        <label for="otEndDate">End Date</label>
+        <input type="date" id="otEndDate">
+      </div>
+      <button class="reset-btn" id="otRangeResetBtn">Reset Range</button>
+    </div>
+
+    <div class="table-header">
+      OT Summary <span class="badge" id="otSummaryBadge">0 entries</span>
+    </div>
+    <div class="table-shell" id="otSummaryShell">
+      <table id="otSummaryTable">
+        <thead>
+          <tr>
+            <th style="width:50px;">#</th>
+            <th>Agent Name</th>
+            <th>Entries</th>
+            <th>Total OT Hours</th>
+            <th>Amount (৳61/hr)</th>
+          </tr>
+        </thead>
+        <tbody id="otSummaryBody"></tbody>
+        <tfoot id="otSummaryFoot"></tfoot>
+      </table>
+    </div>
+    <div class="state-msg" id="otSummaryMsg" style="display:none;">No OT entries found in this date range.</div>
+  </div>
+
+  <!-- ========== ADMIN VIEW ========== -->
+  <div id="adminView" style="display:none;">
+    <div class="admin-gate" id="adminGate">
+      <div class="lock-title">Admin Access</div>
+      <div class="lock-sub">Enter the admin passcode to approve/reject swap requests. This is just a light gate — the real verification happens on the server (Apps Script) side.</div>
+      <input type="password" id="adminPasscodeInput" placeholder="Passcode" autocomplete="off">
+      <button type="button" class="ot-add-btn" id="adminUnlockBtn" style="width:100%;justify-content:center;">Unlock</button>
+      <div class="ot-modal-msg err" id="adminGateMsg" style="text-align:center;"></div>
+    </div>
+
+    <div id="adminPanelWrap" style="display:none;">
+      <div class="ot-hero">
+        <div>
+          <div class="ot-hero-title">Swap Approvals</div>
+          <div class="ot-hero-sub">Pending swap requests can be approved/rejected here. Approving will swap them in the Schedule sheet immediately and show on the main website after the next sync.</div>
+        </div>
+      </div>
+      <div class="swap-list-title">Pending <span class="badge" id="adminPendingBadge">0</span></div>
+      <div id="adminPendingList"></div>
+      <div class="state-msg" id="adminPendingMsg" style="display:none;">No pending swap requests.</div>
+
+      <div class="swap-list-title" style="margin-top:34px;">Recently Reviewed <span class="badge" id="adminReviewedBadge">0</span></div>
+      <div id="adminReviewedList"></div>
+      <div class="state-msg" id="adminReviewedMsg" style="display:none;">No reviewed requests yet.</div>
+    </div>
+  </div>
+
+  <footer class="note">
+    No login required — everyone can view this. Refresh the page after changes in the Sheet to see updated data.
+  </footer>
+
+  <!-- ========== OT SUBMIT MODAL ========== -->
+  <div class="ot-modal-overlay" id="otModalOverlay" style="display:none;">
+    <div class="ot-modal">
+      <div class="ot-modal-header">
+        <span class="ot-modal-title">Add OT Entry</span>
+        <button type="button" class="ot-modal-close" id="otModalCloseX">&times;</button>
+      </div>
+      <div class="ot-modal-body">
+        <div class="field">
+          <label for="otDate">OT Date</label>
+          <input type="date" id="otDate">
+        </div>
+        <div class="field">
+          <label for="otName">Agent Name</label>
+          <select id="otName"><option value="">— Select agent —</option></select>
+        </div>
+        <div class="field">
+          <label for="otHours">Hours</label>
+          <select id="otHours">
+            <option value="">—</option>
+            <option value="0.5">0.5</option>
+            <option value="1">1</option>
+            <option value="1.5">1.5</option>
+            <option value="2">2</option>
+            <option value="2.5">2.5</option>
+            <option value="3">3</option>
+            <option value="3.5">3.5</option>
+            <option value="4">4</option>
+            <option value="4.5">4.5</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+        </div>
+      </div>
+      <div class="ot-modal-msg" id="otModalMsg"></div>
+      <div class="ot-modal-footer">
+        <button type="button" class="ot-modal-cancel" id="otModalCancel">Cancel</button>
+        <button type="button" class="ot-modal-save" id="otSubmitBtn">Save OT</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SWAP REQUEST CONFIRM MODAL ========== -->
+  <div class="ot-modal-overlay" id="swapModalOverlay" style="display:none;">
+    <div class="ot-modal">
+      <div class="ot-modal-header">
+        <span class="ot-modal-title">Confirm Swap Request</span>
+        <button type="button" class="ot-modal-close" id="swapModalCloseX">&times;</button>
+      </div>
+      <div class="ot-modal-body">
+        <div id="swapModalBody" style="font-size:14px;line-height:1.6;color:var(--ink);"></div>
+      </div>
+      <div class="ot-modal-msg" id="swapModalMsg"></div>
+      <div class="ot-modal-footer">
+        <button type="button" class="ot-modal-cancel" id="swapModalCancel">Cancel</button>
+        <button type="button" class="ot-modal-save" id="swapModalSubmitBtn">Send Request</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== CUSTOM HOLIDAY MULTI-SELECT MODAL ========== -->
+  <div class="holiday-modal-overlay" id="holidayModalOverlay" style="display:none;">
+    <div class="holiday-modal">
+      <div class="holiday-modal-header">
+        <span class="holiday-modal-title">Select Holiday Dates</span>
+        <button type="button" class="holiday-modal-close" id="holidayModalCloseX">&times;</button>
+      </div>
+      <div class="holiday-cal-nav">
+        <button type="button" id="holidayPrevMonth">‹</button>
+        <span class="cal-title" id="holidayCalTitle">Month Year</span>
+        <button type="button" id="holidayNextMonth">›</button>
+      </div>
+      <div class="holiday-cal-grid" id="holidayCalGrid"></div>
+      <div class="holiday-modal-footer">
+        <button type="button" class="holiday-modal-cancel" id="holidayModalCancel">Cancel</button>
+        <button type="button" class="holiday-modal-ok" id="holidayModalOk">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ==============================================================
+     SMALL HELPERS
+     ============================================================== */
+  function esc(s){
+    return String(s == null ? '' : s).replace(/[&<>"']/g, c =>
+      ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+  function isOffShift(s){ return /^off$/i.test(String(s || '').trim()); }
+  function initialsOf(r){
+    const nm = (r.agentName && r.agentName.trim().toUpperCase() !== 'N/A') ? r.agentName : (r.systemId || '?');
+    return nm.trim().split(/\s+/).slice(0,2).map(w => w[0] || '').join('').toUpperCase() || '?';
+  }
+  function fmtHrs(h){ return (h % 1 === 0) ? String(h) : h.toFixed(1); }
+
+  /* Smooth count-up for stat numbers (rAF only, reduced-motion safe) */
+  function animateNums(rootEl){
+    if(!rootEl) return;
+    if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    rootEl.querySelectorAll('.n').forEach(el => {
+      const raw = el.textContent;
+      const m = raw.match(/^([^0-9]*)([0-9][0-9.,]*)(.*)$/);
+      if(!m) return;
+      const target = parseFloat(m[2].replace(/,/g, ''));
+      if(!isFinite(target) || target <= 0) return;
+      if(el.dataset.prevNum === String(target)){ el.textContent = raw; return; }
+      el.dataset.prevNum = String(target);
+      const hasDec = m[2].indexOf('.') > -1;
+      const dur = 600, t0 = performance.now();
+      const step = now => {
+        const p = Math.min(1, (now - t0) / dur);
+        const e = 1 - Math.pow(1 - p, 3);
+        const v = target * e;
+        const s = hasDec ? v.toFixed(1) : Math.round(v).toLocaleString('en-US');
+        el.textContent = m[1] + s + m[3];
+        if(p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    });
+  }
+
+  /* ==============================================================
+     SHARED LOGIC & CONFIG
+     ============================================================== */
+  const CONFIG = {
+    SHEET_ID: "1qIhXOv2jU2pQagJbzkYms1vAQ9JPtAhwSNmibGfFZS4",
+    SHEET_NAME: "Schedule",
+    OT_SHEET_NAME: "Form_Responses",
+    SWAP_SHEET_NAME: "Swap_Requests",
+    OT_RATE: 61,
+    // একই Apps Script Web App এখন OT + Swap + Admin auth তিনটাই handle করে (action ফিল্ড দিয়ে আলাদা হয়)
+    OT_API_URL: "https://script.google.com/macros/s/AKfycbyK9RD0_yyCwuJ6bu80rTk42pPmQuQaPZlodnMsd5E0CWM016U-ZMK5wgaQa-3s5eE_Hg/exec",
+    // Admin passcode এখন আর এখানে নাই — শুধু Apps Script backend-এ থাকে (ADMIN_PASSCODE constant)।
+    // Login হয় server-এর কাছে passcode পাঠিয়ে; server ভেরিফাই করে একটা short-lived session token ফেরত দেয়।
+    REFRESH_MS: 900000
+  };
+
+  const csvUrl = () =>
+    `https://docs.google.com/spreadsheets/d/${CONFIG.SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(CONFIG.SHEET_NAME)}&_=${Date.now()}`;
+
+  function parseCSV(text){
+    const rows = [];
+    let row = [], field = '', inQuotes = false;
+    for(let i=0;i<text.length;i++){
+      const c = text[i], next = text[i+1];
+      if(inQuotes){
+        if(c === '"' && next === '"'){ field += '"'; i++; }
+        else if(c === '"'){ inQuotes = false; }
+        else{ field += c; }
+      } else {
+        if(c === '"'){ inQuotes = true; }
+        else if(c === ','){ row.push(field); field=''; }
+        else if(c === '\n'){ row.push(field); rows.push(row); row=[]; field=''; }
+        else if(c === '\r'){ /* skip */ }
+        else{ field += c; }
+      }
+    }
+    if(field.length || row.length){ row.push(field); rows.push(row); }
+    return rows.filter(r => r.some(c => c.trim() !== ''));
+  }
+
+  function normalizeDate(raw){
+    if(!raw) return {sortKey:'', display:'', dayName:'', month:''};
+    raw = raw.trim();
+    let d;
+    let m = raw.match(/^(\d{1,2})-([A-Za-z]{3})-(\d{2,4})$/);
+    if(m){
+      const monthMap = {Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};
+      let yr = m[3].length===2 ? 2000+parseInt(m[3]) : parseInt(m[3]);
+      d = new Date(yr, monthMap[m[2]], parseInt(m[1]));
+    } else {
+      d = new Date(raw);
+    }
+    if(isNaN(d)) return {sortKey:raw, display:raw, dayName:'', month:''};
+
+    const dd = String(d.getDate()).padStart(2,'0');
+    const monthsEn = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const daysEn = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+    return {
+      sortKey: `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${dd}`,
+      display: `${dd} ${monthsEn[d.getMonth()]} ${d.getFullYear()}`,
+      dayName: daysEn[d.getDay()],
+      month: `${monthsEn[d.getMonth()]} ${d.getFullYear()}`
+    };
+  }
+
+  function getSortKeyFromDate(d) {
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  }
+
+  function normalizeAgentName(name){
+    return (name || '')
+      .toLowerCase()
+      .replace(/\./g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function regionPillClass(region){
+    const r = (region||'').trim().toUpperCase();
+    if(r === 'EU') return 'eu';
+    if(r === 'GLO' || r === 'GLOBAL') return 'glo';
+    if(r === 'UDP') return 'udp';
+    if(r === 'OFF') return 'off';
+    return 'other';
+  }
+
+  function parseOTDate(raw){
+    if(!raw) return null;
+    raw = String(raw).trim();
+    const iso = raw.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
+    if(iso) return new Date(+iso[1], +iso[2]-1, +iso[3]);
+    let m = raw.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})$/);
+    if(m){
+      const a = parseInt(m[1],10), b = parseInt(m[2],10);
+      const yr = m[3].length===2 ? 2000+parseInt(m[3]) : parseInt(m[3]);
+      let day, mon;
+      if(a > 12){ day = a; mon = b; } else { mon = a; day = b; }
+      if(mon < 1 || mon > 12 || day < 1 || day > 31) return null;
+      return new Date(yr, mon-1, day);
+    }
+    const d = new Date(raw);
+    return isNaN(d) ? null : d;
+  }
+
+  async function fetchOvertimeRows(){
+    const url = `https://docs.google.com/spreadsheets/d/${CONFIG.SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(CONFIG.OT_SHEET_NAME)}&_=${Date.now()}`;
+    const res = await fetch(url);
+    if(!res.ok) throw new Error('OT fetch failed');
+    const rows = parseCSV(await res.text());
+    if(rows.length < 2) return [];
+    const header = rows[0].map(h => h.trim().toLowerCase());
+    const idx = {
+      date:  header.findIndex(h => h.includes('date')),
+      name:  header.findIndex(h => h.includes('agent') || h.includes('name')),
+      hours: header.findIndex(h => h.includes('hour')),
+    };
+    const out = [];
+    rows.slice(1).forEach(r => {
+      const d = parseOTDate(r[idx.date] || '');
+      const name = (r[idx.name] || '').trim();
+      const hours = parseFloat(String(r[idx.hours] ?? '').replace(/[^\d.]/g,''));
+      if(!d || isNaN(d) || !name || !isFinite(hours) || hours <= 0 || hours > 24) return;
+      out.push({
+        sortKey: getSortKeyFromDate(d),
+        display: `${String(d.getDate()).padStart(2,'0')} ${['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()]} ${d.getFullYear()}`,
+        agentName: name,
+        agentKey: normalizeAgentName(name),
+        hours: hours
+      });
+    });
+    return out;
+  }
+
+  async function fetchSwapRequests(){
+    const url = `https://docs.google.com/spreadsheets/d/${CONFIG.SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(CONFIG.SWAP_SHEET_NAME)}&_=${Date.now()}`;
+    const res = await fetch(url);
+    if(!res.ok) throw new Error('swap fetch failed');
+    const rows = parseCSV(await res.text());
+    if(rows.length < 2) return [];
+    const header = rows[0].map(h => h.trim().toLowerCase());
+    const idx = {
+      ts: header.findIndex(h => h.includes('timestamp')),
+      id: header.findIndex(h => h.includes('request id') || h === 'id'),
+      date: header.findIndex(h => h.includes('duty date') || (h.includes('date') && !h.includes('review'))),
+      reqName: header.findIndex(h => h.includes('requester name')),
+      reqKey: header.findIndex(h => h.includes('requester key')),
+      reqShift: header.findIndex(h => h.includes('requester shift')),
+      reqRegion: header.findIndex(h => h.includes('requester region')),
+      partName: header.findIndex(h => h.includes('partner name')),
+      partKey: header.findIndex(h => h.includes('partner key')),
+      partShift: header.findIndex(h => h.includes('partner shift')),
+      status: header.findIndex(h => h.includes('status')),
+      reviewedAt: header.findIndex(h => h.includes('reviewed at')),
+    };
+    return rows.slice(1).map(r => {
+      const dateInfo = normalizeDate(r[idx.date] || '');
+      return {
+        requestId: (r[idx.id] || '').trim(),
+        sortKey: dateInfo.sortKey,
+        display: dateInfo.display,
+        requesterName: (r[idx.reqName] || '').trim(),
+        requesterKey: (r[idx.reqKey] || '').trim(),
+        requesterShift: (r[idx.reqShift] || '').trim(),
+        requesterRegion: (r[idx.reqRegion] || '').trim(),
+        partnerName: (r[idx.partName] || '').trim(),
+        partnerKey: (r[idx.partKey] || '').trim(),
+        partnerShift: (r[idx.partShift] || '').trim(),
+        status: ((r[idx.status] || '').trim() || 'Pending'),
+        reviewedAt: (r[idx.reviewedAt] || '').trim(),
+      };
+    }).filter(r => r.requestId);
+  }
+
+  async function fetchScheduleRows(){
+    const res = await fetch(csvUrl());
+    if(!res.ok) throw new Error('fetch failed');
+    const text = await res.text();
+    const rows = parseCSV(text);
+    if(rows.length < 2) throw new Error('empty sheet');
+
+    const header = rows[0].map(h => h.trim().toLowerCase());
+    const idx = {
+      date: header.findIndex(h => h.includes('date')),
+      shift: header.findIndex(h => h.includes('shift')),
+      systemId: header.findIndex(h => h.includes('system')),
+      agentName: header.findIndex(h => h.includes('agent')),
+      region: header.findIndex(h => h.includes('region')),
+    };
+
+    return rows.slice(1).map(r => {
+      const dateInfo = normalizeDate(r[idx.date] || '');
+      const agentNameRaw = (r[idx.agentName] || '').trim();
+      return {
+        sortKey: dateInfo.sortKey,
+        display: dateInfo.display,
+        dayName: dateInfo.dayName,
+        month: dateInfo.month,
+        shift: (r[idx.shift] || '').trim(),
+        systemId: (r[idx.systemId] || '').trim(),
+        agentName: agentNameRaw,
+        agentKey: normalizeAgentName(agentNameRaw),
+        region: (r[idx.region] || '').trim(),
+      };
+    }).filter(r => r.agentName || r.systemId);
+  }
+
+  /* ========== GLOBAL STATE & DATA ========== */
+  let ALL_ROWS = [];
+  let OT_ROWS = [];
+  let SWAP_ROWS = [];
+  let adminUnlocked = false;
+  let adminToken = null;        // server-issued short-lived session token — never the passcode itself
+  let adminTokenExpiresAt = 0;  // ms epoch; token invalid after this
+  let SELECTED_SORT_KEY = getSortKeyFromDate(new Date());
+  let salaryVisible = false;
+  let selectedKpiCategory = '';
+  let customHolidays = new Set();
+  let tempHolidaySelection = new Set();
+  let holidayCalCursor = new Date();
+  let detailsSortColumn = 'date';
+  let detailsSortDirection = 'asc';
+  let detailsCurrentPage = 1;
+  const DETAILS_PAGE_SIZE = 30;
+
+  /* ========== VIEW SWITCHER ========== */
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const targetId = btn.getAttribute('data-view');
+      ['todayView','detailsView','agentView','calendarView','swapView','otView','adminView'].forEach(id => {
+        document.getElementById(id).style.display = (id === targetId) ? 'block' : 'none';
+      });
+
+      /* soft entrance animation */
+      const tv = document.getElementById(targetId);
+      tv.classList.remove('view-in');
+      void tv.offsetWidth;
+      tv.classList.add('view-in');
+
+      if(targetId === 'calendarView') renderCalendar();
+      if(targetId === 'swapView') renderSwap();
+      if(targetId === 'otView') renderOTSummary();
+      if(targetId === 'adminView'){ lockAdminIfExpired(); renderAdminPanel(); }
+    });
+  });
+
+  /* session token যদি মেয়াদ শেষ হয়ে যায় (বা invalid হয়), আবার gate দেখানো — কোনো passcode/token client-এ persist করা হয় না */
+  function forceAdminRelogin(message){
+    adminUnlocked = false;
+    adminToken = null;
+    document.getElementById('adminPanelWrap').style.display = 'none';
+    document.getElementById('adminGate').style.display = 'block';
+    document.getElementById('adminGateMsg').textContent = message || 'Session expired — please enter the passcode again.';
+    document.getElementById('adminPasscodeInput').value = '';
+  }
+  function lockAdminIfExpired(){
+    if(adminUnlocked && (!adminToken || Date.now() >= adminTokenExpiresAt)){
+      forceAdminRelogin('Session expired — please enter the passcode again.');
+    }
+  }
+
+  /* ========== TODAY VIEW RENDER ========== */
+  const monthsEn = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const weekdaysEn = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+  const monthsShortEn = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const weekdaysShortEn = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+  function renderDateNav() {
+    const today = new Date();
+    const dates = [];
+    for(let i = -7; i <= 14; i++) {
+      const d = new Date(today);
+      d.setDate(today.getDate() + i);
+      dates.push(d);
+    }
+
+    const dateNavEl = document.getElementById('dateNav');
+    dateNavEl.innerHTML = dates.map(d => {
+      const key = getSortKeyFromDate(d);
+      const isActive = key === SELECTED_SORT_KEY ? 'active' : '';
+      return `<button class="date-btn ${isActive}" data-key="${key}">
+        <span class="m">${monthsShortEn[d.getMonth()]}</span>
+        <span class="d">${d.getDate()}</span>
+        <span class="w">${weekdaysShortEn[d.getDay()]}</span>
+      </button>`;
+    }).join('');
+
+    document.querySelectorAll('.date-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        SELECTED_SORT_KEY = btn.dataset.key;
+        renderDateNav();
+        renderTodayView();
+      });
+    });
+
+    const activeBtn = dateNavEl.querySelector('.date-btn.active');
+    if(activeBtn) activeBtn.scrollIntoView({ behavior:'smooth', inline:'center', block:'nearest' });
+  }
+
+  function renderHeroDate(){
+    const d = new Date(SELECTED_SORT_KEY + 'T00:00:00');
+    if(isNaN(d)) return;
+    document.getElementById('heroDate').innerHTML =
+      `<em>${weekdaysEn[d.getDay()]}</em><span class="hd-sep">—</span>${d.getDate()} ${monthsEn[d.getMonth()]} ${d.getFullYear()}`;
+  }
+
+  function renderStats(targetRows){
+    const counts = {eu:0, glo:0, udp:0};
+    targetRows.forEach(r => {
+      if(/^off$/i.test(r.shift.trim())) return;
+      const cls = regionPillClass(r.region);
+      if(counts[cls] !== undefined) counts[cls]++;
+    });
+
+    const row = document.getElementById('statRow');
+    row.innerHTML = `
+      <div class="stat-chip eu" data-region="eu"><span class="n">${counts.eu}</span><span class="l">On duty in EU</span></div>
+      <div class="stat-chip glo" data-region="glo"><span class="n">${counts.glo}</span><span class="l">On duty in GLOBAL</span></div>
+      <div class="stat-chip udp" data-region="udp"><span class="n">${counts.udp}</span><span class="l">On duty in UDP</span></div>
+    `;
+    animateNums(row);
+  }
+
+  /* ----- region cards: UDP · GLOBAL · EU (+ Other/Off if any) ----- */
+  const REGION_CARDS = [
+    {cls:'udp', label:'UDP'},
+    {cls:'glo', label:'GLOBAL'},
+    {cls:'eu',  label:'EU'}
+  ];
+  const REGION_COLLAPSED = {}; // remembers open/closed state across date changes
+
+  function agentRowHtml(r){
+    const hasName = r.agentName && r.agentName.trim().toUpperCase() !== 'N/A';
+    const displayName = hasName ? r.agentName : r.systemId;
+    const showId = r.systemId && r.systemId !== displayName && r.systemId.trim().toUpperCase() !== 'N/A';
+    const initials = displayName.trim().split(/\s+/).slice(0,2).map(w => w[0]).join('').toUpperCase();
+    const regionCls = regionPillClass(r.region);
+    const swapMatch = SWAP_ROWS.find(s =>
+      s.sortKey === r.sortKey &&
+      /approved/i.test(s.status) &&
+      (s.requesterKey === r.agentKey || s.partnerKey === r.agentKey)
+    );
+    let swapTag = '';
+    if (swapMatch) {
+      const partnerName = swapMatch.requesterKey === r.agentKey ? swapMatch.partnerName : swapMatch.requesterName;
+      swapTag = `<span class="swap-tag">Swapped with ${esc(partnerName || '?')}</span>`;
+    }
+    return `
+      <div class="agent-row">
+        <span class="avatar ${regionCls}">${esc(initials)}</span>
+        <span class="agent-info">
+          <span class="name">${esc(displayName)}${swapTag}</span>
+          ${showId ? `<span class="sysid">ID: ${esc(r.systemId)}</span>` : ''}
+        </span>
+        <span class="pill ${regionCls}">${esc(r.region)}</span>
+      </div>`;
+  }
+
+  function shiftGroupsHtml(rowsIn){
+    const groups = {};
+    rowsIn.forEach(r => {
+      const key = r.shift.trim() || '(Shift not filled)';
+      if(!groups[key]) groups[key] = [];
+      groups[key].push(r);
+    });
+    const keys = Object.keys(groups).sort((a,b) => {
+      const aOff = /^off$/i.test(a), bOff = /^off$/i.test(b);
+      if(aOff && !bOff) return 1;
+      if(bOff && !aOff) return -1;
+      return a.localeCompare(b);
+    });
+    return keys.map(key => {
+      const isOff = /^off$/i.test(key);
+      const rows = groups[key].sort((a,b) => a.agentName.localeCompare(b.agentName));
+      return `
+        <div class="shift-group ${isOff ? 'off-group' : ''}">
+          <div class="shift-group-header">
+            <span class="name">${esc(key)}</span>
+            <span class="count">${rows.length} agents</span>
+          </div>
+          <div class="agent-list">${rows.map(agentRowHtml).join('')}</div>
+        </div>`;
+    }).join('');
+  }
+
+  function regionCardHtml(cls, label, rows){
+    const onDuty = rows.filter(r => !isOffShift(r.shift)).length;
+    const off = rows.length - onDuty;
+    const collapsed = REGION_COLLAPSED[cls] ? 'collapsed' : '';
+    return `
+      <section class="region-card ${cls} ${collapsed}" id="region-${cls}" data-region="${cls}">
+        <button type="button" class="region-head" aria-expanded="${!collapsed}">
+          <span class="rg-name">${esc(label)}</span>
+          <span class="rg-meta"><b>${onDuty}</b> on duty${off ? ` · ${off} off` : ''}</span>
+          <span class="rg-chev">▾</span>
+        </button>
+        <div class="region-body">
+          ${rows.length ? shiftGroupsHtml(rows) : '<div class="region-empty">No agents in this region on this date.</div>'}
+        </div>
+      </section>`;
+  }
+
+  function renderGroups(targetRows){
+    const holder = document.getElementById('groupsHolder');
+    const stateMsg = document.getElementById('stateMsgToday');
+
+    if(targetRows.length === 0){
+      holder.innerHTML = '';
+      stateMsg.style.display = 'block';
+      stateMsg.textContent = 'No schedule entries found for this date.';
+      return;
+    }
+    stateMsg.style.display = 'none';
+
+    const buckets = {udp:[], glo:[], eu:[], other:[]};
+    targetRows.forEach(r => {
+      const c = regionPillClass(r.region);
+      (buckets[c] || buckets.other).push(r);
+    });
+
+    let html = REGION_CARDS.map(rc => regionCardHtml(rc.cls, rc.label, buckets[rc.cls])).join('');
+    if(buckets.other.length) html += regionCardHtml('other', 'Other / Off', buckets.other);
+    holder.innerHTML = html;
+  }
+
+  // collapse / expand a region card
+  document.getElementById('groupsHolder').addEventListener('click', e => {
+    const head = e.target.closest('.region-head');
+    if(!head) return;
+    const card = head.closest('.region-card');
+    const collapsed = card.classList.toggle('collapsed');
+    REGION_COLLAPSED[card.dataset.region] = collapsed;
+    head.setAttribute('aria-expanded', String(!collapsed));
+  });
+
+  // top stat chips jump to their region card (and open it)
+  document.getElementById('statRow').addEventListener('click', e => {
+    const chip = e.target.closest('.stat-chip[data-region]');
+    if(!chip) return;
+    const card = document.getElementById('region-' + chip.dataset.region);
+    if(!card) return;
+    card.classList.remove('collapsed');
+    REGION_COLLAPSED[chip.dataset.region] = false;
+    card.querySelector('.region-head').setAttribute('aria-expanded','true');
+    card.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+  function renderTodayView() {
+    renderHeroDate();
+    const targetRows = ALL_ROWS.filter(r => r.sortKey === SELECTED_SORT_KEY);
+    renderStats(targetRows);
+    renderGroups(targetRows);
+  }
+
+  /* ========== DETAILS VIEW RENDER ========== */
+  function populateSelect(id, values){
+    const el = document.getElementById(id);
+    const current = el.value;
+    el.innerHTML = '<option value="">All</option>' +
+      values.map(v => `<option value="${esc(v)}">${esc(v)}</option>`).join('');
+    if(values.includes(current)) el.value = current;
+  }
+
+  function renderDetails(){
+    const month = document.getElementById('fMonth').value;
+    const region = document.getElementById('fRegion').value;
+    const shift = document.getElementById('fShift').value;
+    const agentQ = document.getElementById('fAgent').value.trim().toLowerCase();
+
+    let rows = ALL_ROWS.filter(r => {
+      if(month && r.month !== month) return false;
+      if(region && r.region !== region) return false;
+      if(shift && r.shift !== shift) return false;
+      if(agentQ && !(r.agentName.toLowerCase().includes(agentQ) || r.systemId.toLowerCase().includes(agentQ))) return false;
+      return true;
+    });
+
+    const dir = detailsSortDirection === 'asc' ? 1 : -1;
+    rows.sort((a,b) => {
+      let av, bv;
+      switch(detailsSortColumn){
+        case 'shift': av = a.shift.toLowerCase(); bv = b.shift.toLowerCase(); break;
+        case 'systemId': av = a.systemId.toLowerCase(); bv = b.systemId.toLowerCase(); break;
+        case 'agentName': av = a.agentName.toLowerCase(); bv = b.agentName.toLowerCase(); break;
+        case 'region': av = a.region.toLowerCase(); bv = b.region.toLowerCase(); break;
+        case 'date':
+        default: av = a.sortKey; bv = b.sortKey; break;
+      }
+      if(av < bv) return -1 * dir;
+      if(av > bv) return 1 * dir;
+      return a.sortKey.localeCompare(b.sortKey);
+    });
+
+    const tbody = document.getElementById('tbodyDetails');
+    const table = document.getElementById('schedTable');
+    const stateMsg = document.getElementById('stateMsgDetails');
+    const totalRows = rows.length;
+    const totalPages = Math.max(1, Math.ceil(totalRows / DETAILS_PAGE_SIZE));
+    if(detailsCurrentPage > totalPages) detailsCurrentPage = totalPages;
+    if(detailsCurrentPage < 1) detailsCurrentPage = 1;
+    const startIdx = (detailsCurrentPage - 1) * DETAILS_PAGE_SIZE;
+    const pageRows = rows.slice(startIdx, startIdx + DETAILS_PAGE_SIZE);
+
+    if(totalRows === 0){
+      table.style.display = 'none';
+      stateMsg.style.display = 'block';
+      stateMsg.textContent = 'No data found — try changing the filters.';
+      document.getElementById('detailsPagination').innerHTML = '';
+    } else {
+      table.style.display = 'table';
+      stateMsg.style.display = 'none';
+      tbody.innerHTML = pageRows.map(r => {
+        const isOff = /^off$/i.test(r.shift.trim());
+        return `<tr class="${isOff ? 'off-row' : ''}">
+          <td>${esc(r.display)}</td>
+          <td>${isOff ? '<span class="off-tag">OFF</span>' : esc(r.shift)}</td>
+          <td>${esc(r.systemId)}</td>
+          <td>${esc(r.agentName)}</td>
+          <td><span class="pill ${regionPillClass(r.region)}">${esc(r.region)}</span></td>
+        </tr>`;
+      }).join('');
+      renderDetailsPagination(totalRows, totalPages, startIdx, pageRows.length);
+    }
+
+    const rangeStart = totalRows === 0 ? 0 : startIdx + 1;
+    const rangeEnd = startIdx + pageRows.length;
+    document.getElementById('summary').innerHTML =
+      `Showing <b>${rangeStart}–${rangeEnd}</b> of <b>${totalRows}</b> entries${agentQ ? ` — for "${esc(document.getElementById('fAgent').value.trim())}"` : ''}`;
+
+    updateSortArrows();
+  }
+
+  function updateSortArrows(){
+    document.querySelectorAll('#schedTable thead th[data-sort]').forEach(th => {
+      const col = th.dataset.sort;
+      const arrow = th.querySelector('.sort-arrow');
+      if(!arrow) return;
+      if(col === detailsSortColumn){
+        arrow.textContent = detailsSortDirection === 'asc' ? '▲' : '▼';
+        arrow.classList.add('active');
+      } else {
+        arrow.textContent = '↕';
+        arrow.classList.remove('active');
+      }
+    });
+  }
+
+  function renderDetailsPagination(totalRows, totalPages){
+    const el = document.getElementById('detailsPagination');
+    el.innerHTML = `
+      <span class="pagination-info">${totalRows} entries total</span>
+      <div class="pagination-controls">
+        <button type="button" class="page-btn" id="detailsPrevPage" ${detailsCurrentPage <= 1 ? 'disabled' : ''}>‹ Prev</button>
+        <span class="page-indicator">Page ${detailsCurrentPage} of ${totalPages}</span>
+        <button type="button" class="page-btn" id="detailsNextPage" ${detailsCurrentPage >= totalPages ? 'disabled' : ''}>Next ›</button>
+      </div>
+    `;
+    const prevBtn = document.getElementById('detailsPrevPage');
+    const nextBtn = document.getElementById('detailsNextPage');
+    if(prevBtn) prevBtn.addEventListener('click', () => {
+      if(detailsCurrentPage > 1){ detailsCurrentPage--; renderDetails(); }
+    });
+    if(nextBtn) nextBtn.addEventListener('click', () => {
+      if(detailsCurrentPage < totalPages){ detailsCurrentPage++; renderDetails(); }
+    });
+  }
+
+  document.querySelectorAll('#schedTable thead th[data-sort]').forEach(th => {
+    th.addEventListener('click', () => {
+      const col = th.dataset.sort;
+      if(detailsSortColumn === col){
+        detailsSortDirection = detailsSortDirection === 'asc' ? 'desc' : 'asc';
+      } else {
+        detailsSortColumn = col;
+        detailsSortDirection = 'asc';
+      }
+      detailsCurrentPage = 1;
+      renderDetails();
+    });
+  });
+
+  /* ========== CUSTOM HOLIDAY PICKER (modal, multi-select) ========== */
+  function renderHolidayList(){
+    const chipListEl = document.getElementById('holidayChipList');
+    const emptyNoteEl = document.getElementById('holidayEmptyNote');
+    const clearBtn = document.getElementById('clearHolidaysBtn');
+
+    const sortedKeys = Array.from(customHolidays).sort();
+    if(sortedKeys.length === 0){
+      chipListEl.innerHTML = '';
+      emptyNoteEl.style.display = 'block';
+      clearBtn.style.display = 'none';
+    } else {
+      emptyNoteEl.style.display = 'none';
+      clearBtn.style.display = 'inline-block';
+      chipListEl.innerHTML = sortedKeys.map(key => {
+        const d = new Date(key + 'T00:00:00');
+        const label = `${d.getDate()} ${monthsShortEn[d.getMonth()]} ${d.getFullYear()}`;
+        return `<span class="holiday-chip">${label}<button type="button" data-key="${key}" title="Remove">×</button></span>`;
+      }).join('');
+      chipListEl.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          customHolidays.delete(btn.dataset.key);
+          renderHolidayList();
+          renderHistory();
+        });
+      });
+    }
+  }
+
+  function renderHolidayModalCalendar(){
+    const titleEl = document.getElementById('holidayCalTitle');
+    const gridEl = document.getElementById('holidayCalGrid');
+
+    const year = holidayCalCursor.getFullYear();
+    const month = holidayCalCursor.getMonth();
+    titleEl.textContent = `${monthsEn[month]} ${year}`;
+
+    const firstDay = new Date(year, month, 1);
+    const startWeekday = firstDay.getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const todayKey = getSortKeyFromDate(new Date());
+
+    let cells = weekdaysShortEn.map(w => `<div class="dow">${w}</div>`).join('');
+    for(let i = 0; i < startWeekday; i++){
+      cells += `<div class="holiday-cal-day empty"></div>`;
+    }
+    for(let day = 1; day <= daysInMonth; day++){
+      const d = new Date(year, month, day);
+      const key = getSortKeyFromDate(d);
+      const isSelected = tempHolidaySelection.has(key);
+      const isToday = key === todayKey;
+      cells += `<div class="holiday-cal-day ${isSelected ? 'selected' : ''} ${isToday ? 'today' : ''}" data-key="${key}">${day}</div>`;
+    }
+    gridEl.innerHTML = cells;
+
+    gridEl.querySelectorAll('.holiday-cal-day:not(.empty)').forEach(cell => {
+      cell.addEventListener('click', () => {
+        const key = cell.dataset.key;
+        if(tempHolidaySelection.has(key)) tempHolidaySelection.delete(key);
+        else tempHolidaySelection.add(key);
+        renderHolidayModalCalendar();
+      });
+    });
+  }
+
+  function openHolidayModal(){
+    tempHolidaySelection = new Set(customHolidays);
+    holidayCalCursor = new Date();
+    document.getElementById('holidayModalOverlay').style.display = 'flex';
+    renderHolidayModalCalendar();
+  }
+  function closeHolidayModal(){
+    document.getElementById('holidayModalOverlay').style.display = 'none';
+  }
+
+  document.getElementById('openHolidayModalBtn').addEventListener('click', openHolidayModal);
+  document.getElementById('holidayPrevMonth').addEventListener('click', () => {
+    holidayCalCursor.setMonth(holidayCalCursor.getMonth() - 1);
+    renderHolidayModalCalendar();
+  });
+  document.getElementById('holidayNextMonth').addEventListener('click', () => {
+    holidayCalCursor.setMonth(holidayCalCursor.getMonth() + 1);
+    renderHolidayModalCalendar();
+  });
+  document.getElementById('holidayModalOk').addEventListener('click', () => {
+    customHolidays = new Set(tempHolidaySelection);
+    closeHolidayModal();
+    renderHolidayList();
+    renderHistory();
+  });
+  document.getElementById('holidayModalCancel').addEventListener('click', closeHolidayModal);
+  document.getElementById('holidayModalCloseX').addEventListener('click', closeHolidayModal);
+  document.getElementById('holidayModalOverlay').addEventListener('click', (e) => {
+    if(e.target.id === 'holidayModalOverlay') closeHolidayModal();
+  });
+  document.getElementById('clearHolidaysBtn').addEventListener('click', () => {
+    customHolidays.clear();
+    renderHolidayList();
+    renderHistory();
+  });
+
+  /* ========== SALARY CALCULATION ========== */
+  const SALARY_PER_DAY = 590;
+  const HOLIDAY_BONUS_PER_DAY = 510;
+  const KPI_MIN_DUTY_DAYS = 17;
+  const KPI_VALUES = { '': 0, A: 2700, B: 2025, C: 675 };
+  const KPI_LABELS = { '': 'No category selected', A: 'Category A selected', B: 'Category B selected', C: 'Category C selected' };
+
+  function parseTimeToken(token){
+    if(!token) return null;
+    token = token.trim();
+    const m = token.match(/^(\d{1,2})(?:[:.](\d{2}))?\s*([APap][Mm])?$/);
+    if(!m) return null;
+    let hour = parseInt(m[1], 10);
+    const minute = m[2] ? parseInt(m[2], 10) : 0;
+    const ampm = m[3] ? m[3].toLowerCase() : null;
+    if(ampm){
+      if(hour === 12) hour = 0;
+      if(ampm === 'pm') hour += 12;
+    } else {
+      if(hour === 24) hour = 0;
+    }
+    if(hour < 0 || hour > 23 || minute < 0 || minute > 59) return null;
+    return hour * 60 + minute;
+  }
+
+  function parseShiftRange(shiftStr){
+    if(!shiftStr) return null;
+    const parts = shiftStr.split(/-|–|to/i).map(s => s.trim()).filter(Boolean);
+    if(parts.length < 2) return null;
+    let startMin = parseTimeToken(parts[0]);
+    let endMin = parseTimeToken(parts[1]);
+    if(startMin === null || endMin === null) return null;
+    return { startMin, endMin };
+  }
+
+  function hasShiftTime(shiftStr){
+    return parseShiftRange(shiftStr) !== null;
+  }
+
+  // Travel allowance rules:
+  //  - Any shift ending exactly at 10:00 PM -> 45 tk
+  //  - Any other shift starting or ending between 10:00 PM and 5:00 AM (inclusive) -> 115 tk
+  //  - Any other shift -> 0
+  function computeTravelAllowance(shiftStr){
+    const range = parseShiftRange(shiftStr);
+    if(!range) return 0;
+    const { startMin, endMin } = range;
+    const TEN_PM = 22 * 60;
+    const FIVE_AM = 5 * 60;
+
+    if(endMin === TEN_PM){
+      return 45;
+    }
+
+    const inNightWindow = (m) => m >= TEN_PM || m <= FIVE_AM;
+    if(inNightWindow(startMin) || inNightWindow(endMin)){
+      return 115;
+    }
+    return 0;
+  }
+
+  function fmtTk(n){
+    return '৳' + n.toLocaleString('en-US');
+  }
+
+  function renderSalary(filtered){
+    const salaryPanel = document.getElementById('salaryPanel');
+    const panelBody = document.getElementById('salaryPanelBody');
+    const toggleBtn = document.getElementById('toggleSalaryBtn');
+    const kpiCategory = selectedKpiCategory;
+
+    let dutyDaysWorked = 0;
+    let travelTotal = 0;
+    let dutyPayTotal = 0;
+    let normalDutyDays = 0;
+    let holidayDutyDays = 0;
+
+    filtered.forEach(r => {
+      if(hasShiftTime(r.shift)){
+        dutyDaysWorked++;
+        travelTotal += computeTravelAllowance(r.shift);
+        if(customHolidays.has(r.sortKey)){
+          holidayDutyDays++;
+          dutyPayTotal += SALARY_PER_DAY + HOLIDAY_BONUS_PER_DAY;
+        } else {
+          normalDutyDays++;
+          dutyPayTotal += SALARY_PER_DAY;
+        }
+      }
+    });
+
+    /* ---- OT calculation ---- */
+    const agentKey = document.getElementById('agentSelect').value;
+    const sv = document.getElementById('startDate').value;
+    const ev = document.getElementById('endDate').value;
+    const otRows = OT_ROWS.filter(r => {
+      if(r.agentKey !== agentKey) return false;
+      if(sv && r.sortKey < sv) return false;
+      if(ev && r.sortKey > ev) return false;
+      return true;
+    });
+    const otHours = otRows.reduce((s,r) => s + r.hours, 0);
+    const otPay = Math.round(otHours * CONFIG.OT_RATE);
+
+    const kpiEligible = dutyDaysWorked >= KPI_MIN_DUTY_DAYS;
+    const kpiBonus = kpiEligible ? (KPI_VALUES[kpiCategory] || 0) : 0;
+    const grandTotal = dutyPayTotal + travelTotal + kpiBonus + otPay;
+
+    document.getElementById('salaryDutyPay').textContent = fmtTk(dutyPayTotal);
+    let dutySubText = `${normalDutyDays} days × ৳${SALARY_PER_DAY}`;
+    if(holidayDutyDays > 0){
+      dutySubText += ` + ${holidayDutyDays} holiday × ৳${SALARY_PER_DAY + HOLIDAY_BONUS_PER_DAY}`;
+    }
+    document.getElementById('salaryDutySub').textContent = dutySubText;
+    document.getElementById('salaryTravel').textContent = fmtTk(travelTotal);
+    document.getElementById('salaryKPI').textContent = fmtTk(kpiBonus);
+
+    let kpiSub;
+    if(!kpiCategory){
+      kpiSub = 'No category selected';
+    } else if(!kpiEligible){
+      const remaining = KPI_MIN_DUTY_DAYS - dutyDaysWorked;
+      kpiSub = `Needs ${KPI_MIN_DUTY_DAYS}+ duty days (${remaining} more)`;
+    } else {
+      kpiSub = KPI_LABELS[kpiCategory];
+    }
+    document.getElementById('salaryKPISub').textContent = kpiSub;
+    document.getElementById('salaryTotal').textContent = fmtTk(grandTotal);
+    document.getElementById('salaryPreview').textContent = fmtTk(grandTotal);
+
+    document.getElementById('salaryOT').textContent = fmtTk(otPay);
+    document.getElementById('salaryOTSub').textContent =
+      otRows.length
+        ? `${fmtHrs(otHours)} hrs × ৳${CONFIG.OT_RATE} · ${otRows.length} entry${otRows.length > 1 ? 's' : ''}`
+        : 'No OT recorded';
+
+    const otLogWrap = document.getElementById('otLogWrap');
+    const otLogList = document.getElementById('otLogList');
+    if(otRows.length){
+      otLogList.innerHTML = otRows.slice()
+        .sort((a,b) => a.sortKey.localeCompare(b.sortKey))
+        .map(r => `
+          <div class="ot-log-item">
+            <span class="ot-date">${esc(r.display)}</span>
+            <span>${fmtHrs(r.hours)} hr${r.hours === 1 ? '' : 's'}</span>
+            <span class="ot-amt">${fmtTk(Math.round(r.hours * CONFIG.OT_RATE))}</span>
+          </div>`).join('');
+      otLogWrap.style.display = 'block';
+    } else {
+      otLogWrap.style.display = 'none';
+    }
+
+    salaryPanel.style.display = 'block';
+    salaryPanel.classList.toggle('open', salaryVisible);
+    toggleBtn.setAttribute('aria-expanded', salaryVisible ? 'true' : 'false');
+    panelBody.style.display = salaryVisible ? 'block' : 'none';
+
+    renderHolidayList();
+  }
+
+  /* ========== AGENT HISTORY VIEW RENDER ========== */
+  function populateAgents(){
+    const keyToNameCounts = {};
+    ALL_ROWS.forEach(r => {
+      if(!r.agentKey) return;
+      keyToNameCounts[r.agentKey] = keyToNameCounts[r.agentKey] || {};
+      keyToNameCounts[r.agentKey][r.agentName] = (keyToNameCounts[r.agentKey][r.agentName] || 0) + 1;
+    });
+    const agentEntries = Object.keys(keyToNameCounts).map(key => {
+      const counts = keyToNameCounts[key];
+      const bestName = Object.keys(counts).sort((a,b) => counts[b]-counts[a])[0];
+      return { key, name: bestName };
+    }).sort((a,b) => a.name.localeCompare(b.name));
+
+    const select = document.getElementById('agentSelect');
+    select.innerHTML = '<option value="">-- Select Agent --</option>' +
+      agentEntries.map(e => `<option value="${esc(e.key)}">${esc(e.name)}</option>`).join('');
+  }
+
+  function agentDisplayName(agentKey){
+    const counts = {};
+    ALL_ROWS.forEach(r => {
+      if(r.agentKey === agentKey) counts[r.agentName] = (counts[r.agentName] || 0) + 1;
+    });
+    const names = Object.keys(counts).sort((a,b) => counts[b]-counts[a]);
+    return names[0] || agentKey;
+  }
+
+  function agentRegionClass(agentKey){
+    const tally = {};
+    ALL_ROWS.filter(r => r.agentKey === agentKey).forEach(r => {
+      const c = regionPillClass(r.region);
+      if(c !== 'off' && c !== 'other') tally[c] = (tally[c] || 0) + 1;
+    });
+    const keys = Object.keys(tally).sort((a,b) => tally[b]-tally[a]);
+    return keys[0] || 'other';
+  }
+
+  function agentInitials(agentKey){
+    return agentDisplayName(agentKey).trim().split(/\s+/).slice(0,2).map(w => w[0]).join('').toUpperCase() || '?';
+  }
+
+  function setDefaultDates(){
+    const r = defaultRangeStrings();
+    document.getElementById('startDate').value = r.s;
+    document.getElementById('endDate').value = r.e;
+  }
+
+  // Default range: 15th of previous month (or current month if today >= 16th) → today
+// Default range: 16th of current month → today
+function defaultRangeStrings(){
+  const today = new Date();
+  const startYear = today.getFullYear();
+  const startMonth = today.getMonth();
+
+  const s = `${startYear}-${String(startMonth + 1).padStart(2, '0')}-16`;
+  const e = getSortKeyFromDate(today);
+  return { s, e };
+}
+
+  function renderHistory(){
+    const agent = document.getElementById('agentSelect').value;
+    const startDateStr = document.getElementById('startDate').value;
+    const endDateStr = document.getElementById('endDate').value;
+
+    const statsGrid = document.getElementById('statsGrid');
+    const tableSection = document.getElementById('tableSection');
+    const stateMsg = document.getElementById('stateMsgAgent');
+
+    if(!agent){
+      statsGrid.style.display = 'none';
+      document.getElementById('salaryPanel').style.display = 'none';
+      tableSection.style.display = 'none';
+      stateMsg.style.display = 'block';
+      stateMsg.textContent = 'Please select an agent to view their shift history.';
+      stateMsg.classList.remove('error');
+      return;
+    }
+
+    let filtered = ALL_ROWS.filter(r => {
+      if(r.agentKey !== agent) return false;
+      if(startDateStr && r.sortKey < startDateStr) return false;
+      if(endDateStr && r.sortKey > endDateStr) return false;
+      return true;
+    });
+
+    let dutyDays = 0;
+    let shiftCounts = {};
+    let regions = new Set();
+
+    filtered.forEach(r => {
+      if(hasShiftTime(r.shift)) {
+        dutyDays++;
+        shiftCounts[r.shift] = (shiftCounts[r.shift] || 0) + 1;
+        if(r.region) regions.add(r.region);
+      }
+    });
+
+    let totalDaysInRange = 0;
+    const start = new Date(startDateStr + 'T00:00:00');
+    const end = new Date(endDateStr + 'T00:00:00');
+
+    if (!isNaN(start) && !isNaN(end)) {
+      const diffTime = Math.abs(end - start);
+      totalDaysInRange = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
+    } else {
+      totalDaysInRange = filtered.length;
+    }
+
+    let offDays = totalDaysInRange - dutyDays;
+    if (offDays < 0) offDays = 0;
+
+    let topShift = 'N/A';
+    let maxCount = 0;
+    for(let s in shiftCounts){
+      if(shiftCounts[s] > maxCount){
+        maxCount = shiftCounts[s];
+        topShift = s;
+      }
+    }
+
+    document.getElementById('statDutyDays').textContent = dutyDays;
+    document.getElementById('statOffDays').textContent = offDays;
+    document.getElementById('statTopShift').textContent = topShift;
+    document.getElementById('statTopShiftCount').textContent = maxCount > 0 ? `Worked ${maxCount} times` : 'No shifts worked';
+    document.getElementById('statRegions').textContent = regions.size > 0 ? Array.from(regions).join(', ') : 'None';
+    statsGrid.style.display = 'grid';
+
+    renderSalary(filtered);
+
+    let tableRows = [];
+
+    if (isNaN(start) || isNaN(end)) {
+      tableRows = filtered;
+    } else {
+      let current = new Date(start);
+      const monthsLocal = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      const daysLocal = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+      while(current <= end) {
+        let sortKey = `${current.getFullYear()}-${String(current.getMonth()+1).padStart(2,'0')}-${String(current.getDate()).padStart(2,'0')}`;
+        let found = filtered.find(r => r.sortKey === sortKey);
+
+        if (found) {
+          tableRows.push(found);
+        } else {
+          const dd = String(current.getDate()).padStart(2,'0');
+          tableRows.push({
+            sortKey: sortKey,
+            display: `${dd} ${monthsLocal[current.getMonth()]} ${current.getFullYear()}`,
+            dayName: daysLocal[current.getDay()],
+            shift: 'OFF',
+            region: '-',
+            systemId: '-'
+          });
+        }
+        current.setDate(current.getDate() + 1);
+      }
+    }
+
+    if(tableRows.length === 0){
+       statsGrid.style.display = 'none';
+       document.getElementById('salaryPanel').style.display = 'none';
+       tableSection.style.display = 'none';
+       stateMsg.style.display = 'block';
+       stateMsg.textContent = `No records found for ${agent} in the selected date range.`;
+       return;
+    }
+
+    document.getElementById('resultCount').textContent = `${tableRows.length} entries found`;
+    const tbody = document.getElementById('tbodyAgent');
+    tbody.innerHTML = tableRows.map(r => {
+      const isOff = r.shift.trim().toUpperCase() === 'OFF';
+      const pillClass = isOff ? 'off' : regionPillClass(r.region);
+      const otHrs = OT_ROWS
+        .filter(o => o.agentKey === agent && o.sortKey === r.sortKey)
+        .reduce((s,o) => s + o.hours, 0);
+      const otTag = otHrs > 0 ? ` <span class="ot-tag">OT ${fmtHrs(otHrs)}h</span>` : '';
+      const swapMatch = SWAP_ROWS.find(s =>
+        s.sortKey === r.sortKey &&
+        /approved/i.test(s.status) &&
+        (s.requesterKey === agent || s.partnerKey === agent)
+      );
+      let swapTag = '';
+      if (swapMatch) {
+        const partnerName = swapMatch.requesterKey === agent ? swapMatch.partnerName : swapMatch.requesterName;
+        swapTag = ` <span class="swap-tag">Swapped with ${esc(partnerName || '?')}</span>`;
+      }
+      return `<tr class="${isOff ? 'off-row' : ''}">
+        <td>${esc(r.display)}</td>
+        <td style="color:var(--muted); font-weight:500;">${esc(r.dayName)}</td>
+        <td><span class="pill ${pillClass}">${esc(r.shift)}</span>${otTag}${swapTag}</td>
+        <td>${esc(r.region || '-')}</td>
+        <td style="color:var(--muted);">${esc(r.systemId || '-')}</td>
+      </tr>`;
+    }).join('');
+
+    tableSection.style.display = 'block';
+    stateMsg.style.display = 'none';
+  }
+
+  /* ========== CALENDAR VIEW ========== */
+  let calCursor = new Date();
+
+  function renderCalendar(){
+    const grid = document.getElementById('calGrid');
+    if(!grid) return;
+    if(!ALL_ROWS.length){ grid.innerHTML = ''; return; }
+
+    const y = calCursor.getFullYear(), m = calCursor.getMonth();
+    document.getElementById('calTitle').textContent = monthsEn[m] + ' ' + y;
+
+    const byDate = {};
+    ALL_ROWS.forEach(r => {
+      if(!/^\d{4}-\d{2}-\d{2}$/.test(r.sortKey || '')) return;
+      (byDate[r.sortKey] = byDate[r.sortKey] || []).push(r);
+    });
+
+    const todayKey = getSortKeyFromDate(new Date());
+    const first = new Date(y, m, 1);
+    const gridStart = new Date(y, m, 1 - first.getDay());
+    const MAX_SHOW = 3;
+
+    let html = weekdaysShortEn.map(d => `<div class="cal-dow">${d}</div>`).join('');
+
+    for(let i = 0; i < 42; i++){
+      const d = new Date(gridStart);
+      d.setDate(gridStart.getDate() + i);
+      const key = getSortKeyFromDate(d);
+      const inMonth = d.getMonth() === m;
+      const dayRows = byDate[key] || [];
+      const onDuty = dayRows.filter(r => hasShiftTime(r.shift));
+      const offN = dayRows.length - onDuty.length;
+
+      const cls = ['cal-cell'];
+      if(!inMonth) cls.push('other-month');
+      if(key === todayKey) cls.push('is-today');
+      if(key === SELECTED_SORT_KEY) cls.push('is-sel');
+
+      let inner = '';
+      if(inMonth){
+        inner = onDuty.slice(0, MAX_SHOW).map(r =>
+          `<span class="cal-agent"><i class="${regionPillClass(r.region)}"></i><span class="nm">${esc(r.agentName && r.agentName.trim().toUpperCase() !== 'N/A' ? r.agentName : r.systemId)}</span></span>`
+        ).join('');
+        if(onDuty.length > MAX_SHOW) inner += `<span class="cal-more">+${onDuty.length - MAX_SHOW} more</span>`;
+        if(offN > 0) inner += `<span class="cal-offn">${offN} off</span>`;
+      }
+      html += `<div class="${cls.join(' ')}" data-key="${key}">
+        <span class="cal-day-num">${d.getDate()}</span>
+        <div class="cal-agents">${inner}</div>
+      </div>`;
+    }
+    grid.innerHTML = html;
+
+    grid.querySelectorAll('.cal-cell[data-key]').forEach(c => {
+      c.addEventListener('click', () => {
+        SELECTED_SORT_KEY = c.dataset.key;
+        renderDateNav();
+        renderTodayView();
+        document.querySelector('.nav-btn[data-view="todayView"]').click();
+      });
+    });
+  }
+
+  document.getElementById('calPrev').addEventListener('click', () => { calCursor.setMonth(calCursor.getMonth() - 1); renderCalendar(); });
+  document.getElementById('calNext').addEventListener('click', () => { calCursor.setMonth(calCursor.getMonth() + 1); renderCalendar(); });
+  document.getElementById('calThis').addEventListener('click', () => { calCursor = new Date(); renderCalendar(); });
+
+  /* ========== SWAP HELPER ========== */
+  function swapRegionGroup(region){
+    const cls = regionPillClass(region);
+    if(cls === 'other' || cls === 'off') return 'RAW:' + String(region || '').trim().toUpperCase();
+    return cls;
+  }
+
+  function mostCommonRegion(agentKey){
+    const tally = {};
+    ALL_ROWS.filter(r => r.agentKey === agentKey && hasShiftTime(r.shift)).forEach(r => {
+      const g = swapRegionGroup(r.region);
+      tally[g] = (tally[g] || 0) + 1;
+    });
+    let best = '', n = 0;
+    Object.keys(tally).forEach(g => { if(tally[g] > n){ best = g; n = tally[g]; } });
+    return best.replace(/^RAW:/, '');
+  }
+
+  function buildSwapOptions(){
+    const sel = document.getElementById('swapAgent');
+    if(!sel) return;
+    const keyToNameCounts = {};
+    ALL_ROWS.forEach(r => {
+      if(!r.agentKey) return;
+      keyToNameCounts[r.agentKey] = keyToNameCounts[r.agentKey] || {};
+      keyToNameCounts[r.agentKey][r.agentName] = (keyToNameCounts[r.agentKey][r.agentName] || 0) + 1;
+    });
+    const entries = Object.keys(keyToNameCounts).map(key => {
+      const counts = keyToNameCounts[key];
+      return { key, name: Object.keys(counts).sort((a,b) => counts[b]-counts[a])[0] };
+    }).sort((a,b) => a.name.localeCompare(b.name));
+
+    const current = sel.value;
+    sel.innerHTML = '<option value="">— Select your name —</option>' +
+      entries.map(e => `<option value="${esc(e.key)}">${esc(e.name)}</option>`).join('');
+    if(entries.some(e => e.key === current)) sel.value = current;
+  }
+
+  /* ----- swap request helpers ----- */
+  function findSwapRequest(dateKey, requesterKey, partnerKey){
+    // same date + same pair (either direction) + not rejected → most recent wins
+    const matches = SWAP_ROWS.filter(s =>
+      s.sortKey === dateKey &&
+      ((s.requesterKey === requesterKey && s.partnerKey === partnerKey) ||
+       (s.requesterKey === partnerKey && s.partnerKey === requesterKey))
+    );
+    if(!matches.length) return null;
+    return matches[matches.length - 1];
+  }
+
+  function statusPillHtml(status){
+    const cls = /approved/i.test(status) ? 'approved' : /rejected/i.test(status) ? 'rejected' : 'pending';
+    const label = cls.charAt(0).toUpperCase() + cls.slice(1);
+    return `<span class="status-pill ${cls}">${label}</span>`;
+  }
+
+  function swapActionCell(dateKey, req, part){
+    const existing = findSwapRequest(dateKey, req.key, part.key);
+    if(existing){
+      return statusPillHtml(existing.status);
+    }
+    const payload = {
+      date: dateKey,
+      reqKey: req.key, reqName: req.name, reqShift: req.shift, reqRegion: req.region,
+      partKey: part.key, partName: part.name, partShift: part.shift
+    };
+    return `<button type="button" class="swap-req-btn" data-swap='${esc(JSON.stringify(payload))}'>Request Swap</button>`;
+  }
+
+  function renderSwap(){
+    const dateEl = document.getElementById('swapDate');
+    const selEl = document.getElementById('swapAgent');
+    const resultEl = document.getElementById('swapResult');
+    const msgEl = document.getElementById('swapMsg');
+    if(!dateEl || !selEl) return;
+
+    if(!dateEl.value) dateEl.value = getSortKeyFromDate(new Date());
+
+    const key = dateEl.value;
+    const agentKey = selEl.value;
+    resultEl.innerHTML = '';
+
+    renderMySwapRequests(agentKey);
+
+    if(!key || !agentKey){
+      msgEl.style.display = 'block';
+      msgEl.textContent = 'Pick a date and your name to see swap-eligible agents (same region only).';
+      return;
+    }
+    msgEl.style.display = 'none';
+
+    const dayRows = ALL_ROWS.filter(r => r.sortKey === key);
+    if(!dayRows.length){
+      msgEl.style.display = 'block';
+      msgEl.textContent = 'No schedule entries found for this date.';
+      return;
+    }
+
+    const mine = dayRows.find(r => r.agentKey === agentKey);
+    const meRow = ALL_ROWS.find(r => r.agentKey === agentKey);
+    const myName = meRow ? meRow.agentName : agentKey;
+    const meObj = { key: agentKey, name: myName };
+
+    if(mine && hasShiftTime(mine.shift)){
+      const myGroup = swapRegionGroup(mine.region);
+      const myRange = parseShiftRange(mine.shift);
+      const myObj = { key: agentKey, name: myName, shift: mine.shift, region: mine.region };
+
+      let eligible = [], sameShift = [], diffRegion = 0, skippedOther = 0;
+      dayRows.forEach(r => {
+        if(r.agentKey === agentKey) return;
+        if(swapRegionGroup(r.region) !== myGroup){ diffRegion++; return; }
+        if(isOffShift(r.shift)){ eligible.push({ r, why:'off' }); return; }
+        if(hasShiftTime(r.shift)){
+          const rr = parseShiftRange(r.shift);
+          if(myRange && rr && rr.startMin === myRange.startMin){ sameShift.push(r); return; }
+          eligible.push({ r, why:'diff' });
+        } else {
+          skippedOther++;
+        }
+      });
+
+      eligible.sort((a,b) =>
+        ((a.why === 'off' ? 0 : 1) - (b.why === 'off' ? 0 : 1)) ||
+        String(a.r.shift).localeCompare(String(b.r.shift)) ||
+        String(a.r.agentName).localeCompare(String(b.r.agentName)));
+
+      resultEl.innerHTML = `
+        <div class="swap-me">
+          <span class="who">${esc(myName)}</span>
+          <span class="meta">${esc(mine.display)} · Shift: <b>${esc(mine.shift)}</b> · Region: <b>${esc(mine.region)}</b></span>
+        </div>
+        <div class="swap-list-title">Eligible Swap Partners <span class="badge">${eligible.length} found</span></div>
+        ${eligible.length ? eligible.map(({r, why}) => `
+          <div class="swap-item">
+            <span class="avatar ${regionPillClass(r.region)}">${esc(initialsOf(r))}</span>
+            <span class="info">
+              <div class="nm">${esc(r.agentName || r.systemId)}</div>
+              <div class="sid">${r.systemId && r.systemId !== r.agentName ? 'ID: ' + esc(r.systemId) + ' · ' : ''}${why === 'off' ? 'OFF that day — can cover your shift' : 'On ' + esc(r.shift) + ' — shift exchange possible'}</div>
+            </span>
+            <span class="pill ${regionPillClass(r.region)}">${esc(r.region)}</span>
+            <span class="why ${why}">${why === 'off' ? 'OFF' : esc(r.shift)}</span>
+            ${swapActionCell(key, myObj, { key:r.agentKey, name:r.agentName || r.systemId, shift:r.shift, region:r.region })}
+          </div>`).join('')
+        : `<div class="state-msg">No eligible partners in <b>${esc(mine.region)}</b> region that day.</div>`}
+        ${sameShift.length ? `
+          <div class="swap-list-title">Same shift — not eligible <span class="badge">${sameShift.length}</span></div>
+          <div class="summary">${sameShift.map(r => esc(r.agentName || r.systemId)).join(', ')}</div>` : ''}
+        ${diffRegion ? `<div class="summary" style="margin-top:10px;">${diffRegion} agent(s) skipped — different region.</div>` : ''}
+      `;
+    }
+    else {
+      let myGroup = (mine && swapRegionGroup(mine.region) !== 'RAW:OFF') ? swapRegionGroup(mine.region) : swapRegionGroup(mostCommonRegion(agentKey));
+      if(!myGroup) myGroup = swapRegionGroup(mostCommonRegion(agentKey));
+      const dutyRows = dayRows.filter(r => hasShiftTime(r.shift) && swapRegionGroup(r.region) === myGroup);
+      const myObj = { key: agentKey, name: myName, shift: (mine ? mine.shift : 'OFF'), region: myGroup.replace('RAW:','') };
+
+      resultEl.innerHTML = `
+        <div class="swap-me">
+          <span class="who">${esc(myName)}</span>
+          <span class="meta">${esc(key)} · <b>${mine ? 'OFF' : 'Not scheduled'}</b>${myGroup ? ' · Region: <b>' + esc(myGroup.replace('RAW:','')) + '</b>' : ''}</span>
+        </div>
+        <div class="swap-list-title">Same-region agents on duty <span class="badge">${dutyRows.length}</span></div>
+        <div class="summary" style="margin-bottom:12px;">You are off this day — you could cover any of their shifts (they return the duty on another day).</div>
+        ${dutyRows.length ? dutyRows.map(r => `
+          <div class="swap-item">
+            <span class="avatar ${regionPillClass(r.region)}">${esc(initialsOf(r))}</span>
+            <span class="info">
+              <div class="nm">${esc(r.agentName || r.systemId)}</div>
+              <div class="sid">${r.systemId && r.systemId !== r.agentName ? 'ID: ' + esc(r.systemId) : ''}</div>
+            </span>
+            <span class="pill ${regionPillClass(r.region)}">${esc(r.region)}</span>
+            <span class="why diff">${esc(r.shift)}</span>
+            ${swapActionCell(key, myObj, { key:r.agentKey, name:r.agentName || r.systemId, shift:r.shift, region:r.region })}
+          </div>`).join('')
+        : `<div class="state-msg">No same-region agents on duty that day.</div>`}
+      `;
+    }
+  }
+
+  function renderMySwapRequests(agentKey){
+    const wrap = document.getElementById('mySwapReqsWrap');
+    const list = document.getElementById('mySwapReqsList');
+    const badge = document.getElementById('mySwapReqsBadge');
+    if(!wrap) return;
+    if(!agentKey){ wrap.style.display = 'none'; return; }
+
+    const mine = SWAP_ROWS.filter(s => s.requesterKey === agentKey || s.partnerKey === agentKey)
+      .sort((a,b) => b.sortKey.localeCompare(a.sortKey));
+
+    if(!mine.length){ wrap.style.display = 'none'; return; }
+
+    wrap.style.display = 'block';
+    badge.textContent = mine.length;
+    list.innerHTML = mine.map(s => {
+      const iAmRequester = s.requesterKey === agentKey;
+      const otherName = iAmRequester ? s.partnerName : s.requesterName;
+      return `
+        <div class="swap-req-row">
+          <span class="rq-info">${iAmRequester ? esc(s.requesterName) : esc(s.partnerName)} ↔ ${otherName ? esc(otherName) : '—'} <span class="rq-date">${esc(s.display)}</span></span>
+          ${statusPillHtml(s.status)}
+        </div>`;
+    }).join('');
+  }
+
+  document.getElementById('swapDate').addEventListener('change', renderSwap);
+  document.getElementById('swapAgent').addEventListener('change', renderSwap);
+
+  /* ----- swap request submit modal ----- */
+  let pendingSwapPayload = null;
+  document.getElementById('swapResult').addEventListener('click', (e) => {
+    const btn = e.target.closest('.swap-req-btn');
+    if(!btn) return;
+    pendingSwapPayload = JSON.parse(btn.dataset.swap);
+    const p = pendingSwapPayload;
+    document.getElementById('swapModalBody').innerHTML =
+      `<b>${esc(p.reqName)}</b> নিজের <b>${esc(p.date)}</b> তারিখের ডিউটি (${esc(p.reqShift)}) `+
+      `<b>${esc(p.partName)}</b>-এর সাথে swap করার জন্য request পাঠাতে চাও।<br><br>`+
+      `এই request admin approve করার আগ পর্যন্ত <b>Pending</b> থাকবে এবং main website-এ কোনো পরিবর্তন দেখাবে না।`;
+    document.getElementById('swapModalMsg').textContent = '';
+    document.getElementById('swapModalMsg').className = 'ot-modal-msg';
+    document.getElementById('swapModalSubmitBtn').disabled = false;
+    document.getElementById('swapModalSubmitBtn').textContent = 'Send Request';
+    document.getElementById('swapModalOverlay').style.display = 'flex';
+  });
+
+  function closeSwapModal(){
+    document.getElementById('swapModalOverlay').style.display = 'none';
+    pendingSwapPayload = null;
+  }
+  document.getElementById('swapModalCloseX').addEventListener('click', closeSwapModal);
+  document.getElementById('swapModalCancel').addEventListener('click', closeSwapModal);
+  document.getElementById('swapModalOverlay').addEventListener('click', (e) => {
+    if(e.target.id === 'swapModalOverlay') closeSwapModal();
+  });
+
+  document.getElementById('swapModalSubmitBtn').addEventListener('click', async () => {
+    if(!pendingSwapPayload) return;
+    const p = pendingSwapPayload;
+    const btn = document.getElementById('swapModalSubmitBtn');
+    const msg = document.getElementById('swapModalMsg');
+    btn.disabled = true; btn.textContent = 'Sending…';
+    try{
+      await fetch(CONFIG.OT_API_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          action: 'swap_request',
+          date: p.date,
+          requesterKey: p.reqKey, requesterName: p.reqName, requesterShift: p.reqShift, requesterRegion: p.reqRegion,
+          partnerKey: p.partKey, partnerName: p.partName, partnerShift: p.partShift
+        })
+      });
+
+      // optimistic local row — status shows Pending until next sheet sync
+      SWAP_ROWS.push({
+        requestId: 'local-' + Date.now(),
+        sortKey: p.date,
+        display: (ALL_ROWS.find(r=>r.sortKey===p.date) || {}).display || p.date,
+        requesterName: p.reqName, requesterKey: p.reqKey, requesterShift: p.reqShift, requesterRegion: p.reqRegion,
+        partnerName: p.partName, partnerKey: p.partKey, partnerShift: p.partShift,
+        status: 'Pending', reviewedAt: ''
+      });
+
+      msg.textContent = '✓ Request পাঠানো হয়েছে — admin approve না করা পর্যন্ত Pending থাকবে।';
+      msg.className = 'ot-modal-msg ok';
+      renderSwap();
+      setTimeout(closeSwapModal, 1400);
+    }catch(err){
+      msg.textContent = '✗ পাঠাতে ব্যর্থ — internet connection চেক করো।';
+      msg.className = 'ot-modal-msg err';
+      btn.disabled = false; btn.textContent = 'Send Request';
+    }
+  });
+
+  /* ----- admin panel: server-verified login (passcode client-এ কোথাও নাই) ----- */
+  document.getElementById('adminUnlockBtn').addEventListener('click', async () => {
+    const val = document.getElementById('adminPasscodeInput').value;
+    const btn = document.getElementById('adminUnlockBtn');
+    const msg = document.getElementById('adminGateMsg');
+    if(!val){ msg.textContent = 'Please enter the passcode.'; return; }
+    btn.disabled = true; btn.textContent = 'Verifying…'; msg.textContent = '';
+    try{
+      const res = await fetch(CONFIG.OT_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ action: 'admin_login', passcode: val })
+      });
+      const out = await res.json();
+      if(out.status === 'ok' && out.token){
+        adminToken = out.token;
+        adminTokenExpiresAt = out.expiresAt || (Date.now() + 25 * 60 * 1000);
+        adminUnlocked = true;
+        document.getElementById('adminPasscodeInput').value = '';
+        document.getElementById('adminGate').style.display = 'none';
+        document.getElementById('adminPanelWrap').style.display = 'block';
+        renderAdminPanel();
+      } else {
+        msg.textContent = 'Incorrect passcode.';
+      }
+    } catch(err){
+      msg.textContent = 'Failed — please check your internet connection.';
+    } finally {
+      btn.disabled = false; btn.textContent = 'Unlock';
+    }
+  });
+  document.getElementById('adminPasscodeInput').addEventListener('keydown', (e) => {
+    if(e.key === 'Enter') document.getElementById('adminUnlockBtn').click();
+  });
+
+  function renderAdminPanel(){
+    if(!adminUnlocked) return;
+    const pendingList = document.getElementById('adminPendingList');
+    const reviewedList = document.getElementById('adminReviewedList');
+    const pending = SWAP_ROWS.filter(s => /pending/i.test(s.status)).sort((a,b) => a.sortKey.localeCompare(b.sortKey));
+    const reviewed = SWAP_ROWS.filter(s => !/pending/i.test(s.status))
+      .sort((a,b) => (b.reviewedAt || '').localeCompare(a.reviewedAt || '')).slice(0, 25);
+
+    document.getElementById('adminPendingBadge').textContent = pending.length;
+    document.getElementById('adminReviewedBadge').textContent = reviewed.length;
+    document.getElementById('adminPendingMsg').style.display = pending.length ? 'none' : 'block';
+    document.getElementById('adminReviewedMsg').style.display = reviewed.length ? 'none' : 'block';
+
+    pendingList.innerHTML = pending.map(s => `
+      <div class="admin-panel-row" data-req-id="${esc(s.requestId)}">
+        <div class="apr-top">
+          <span class="apr-date">${esc(s.display)}</span>
+          ${statusPillHtml(s.status)}
+        </div>
+        <div class="apr-body"><b>${esc(s.requesterName)}</b> (${esc(s.requesterShift)}, ${esc(s.requesterRegion)}) ↔ <b>${esc(s.partnerName)}</b> (${esc(s.partnerShift)})</div>
+        <div class="apr-actions">
+          <button type="button" class="apr-approve" data-decision="approve">Approve</button>
+          <button type="button" class="apr-reject" data-decision="reject">Reject</button>
+        </div>
+      </div>`).join('');
+
+    reviewedList.innerHTML = reviewed.map(s => `
+      <div class="admin-panel-row">
+        <div class="apr-top">
+          <span class="apr-date">${esc(s.display)}</span>
+          ${statusPillHtml(s.status)}
+        </div>
+        <div class="apr-body"><b>${esc(s.requesterName)}</b> ↔ <b>${esc(s.partnerName)}</b></div>
+      </div>`).join('');
+  }
+
+  document.getElementById('adminPendingList').addEventListener('click', async (e) => {
+    const btn = e.target.closest('.apr-approve, .apr-reject');
+    if(!btn) return;
+    const row = btn.closest('.admin-panel-row');
+    const requestId = row.dataset.reqId;
+    const decision = btn.dataset.decision;
+    row.querySelectorAll('button').forEach(b => b.disabled = true);
+    btn.textContent = decision === 'approve' ? 'Approving…' : 'Rejecting…';
+    try{
+      const res = await fetch(CONFIG.OT_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ action: 'swap_review', requestId, decision, token: adminToken })
+      });
+      const out = await res.json();
+      if(out.status !== 'ok'){
+        // token invalid/expired হলে আবার login করতে বলা — কখনো passcode client-এ সেভ থাকে না
+        row.querySelectorAll('button').forEach(b => b.disabled = false);
+        btn.textContent = decision === 'approve' ? 'Approve' : 'Reject';
+        alert(out.message === 'invalid or expired session' ? 'Session expired — please log in again.' : 'Failed — please try again.');
+        if(out.message === 'invalid or expired session'){ forceAdminRelogin('Session expired — please log in again.'); }
+        return;
+      }
+      const s = SWAP_ROWS.find(x => x.requestId === requestId);
+      if(s) s.status = decision === 'approve' ? 'Approved' : 'Rejected';
+      renderAdminPanel();
+    }catch(err){
+      row.querySelectorAll('button').forEach(b => b.disabled = false);
+      btn.textContent = decision === 'approve' ? 'Approve' : 'Reject';
+      alert('Failed — please check your internet connection.');
+    }
+  });
+
+  /* ========== OT VIEW (Summary + Modal Submit) ========== */
+  function buildOTOptions(){
+    const sel = document.getElementById('otName');
+    if(!sel) return;
+    const keyToNameCounts = {};
+    ALL_ROWS.forEach(r => {
+      if(!r.agentKey) return;
+      keyToNameCounts[r.agentKey] = keyToNameCounts[r.agentKey] || {};
+      keyToNameCounts[r.agentKey][r.agentName] = (keyToNameCounts[r.agentKey][r.agentName] || 0) + 1;
+    });
+    const entries = Object.keys(keyToNameCounts).map(key => {
+      const counts = keyToNameCounts[key];
+      return { key, name: Object.keys(counts).sort((a,b) => counts[b]-counts[a])[0] };
+    }).sort((a,b) => a.name.localeCompare(b.name));
+
+    const current = sel.value;
+    sel.innerHTML = '<option value="">— Select agent —</option>' +
+      entries.map(e => `<option value="${esc(e.key)}">${esc(e.name)}</option>`).join('');
+    if(entries.some(e => e.key === current)) sel.value = current;
+  }
+
+  function setOTDefaultDates(){
+    const r = defaultRangeStrings();
+    document.getElementById('otStartDate').value = r.s;
+    document.getElementById('otEndDate').value = r.e;
+  }
+
+  function renderOTSummary(){
+    const sv = document.getElementById('otStartDate').value;
+    const ev = document.getElementById('otEndDate').value;
+
+    const rows = OT_ROWS.filter(r => {
+      if(sv && r.sortKey < sv) return false;
+      if(ev && r.sortKey > ev) return false;
+      return true;
+    });
+
+    const byAgent = {};
+    rows.forEach(r => {
+      if(!byAgent[r.agentKey]) byAgent[r.agentKey] = { name: r.agentName, hours: 0, entries: 0 };
+      byAgent[r.agentKey].hours += r.hours;
+      byAgent[r.agentKey].entries++;
+    });
+
+    const list = Object.entries(byAgent).sort((a,b) => b[1].hours - a[1].hours);
+
+    const body = document.getElementById('otSummaryBody');
+    const foot = document.getElementById('otSummaryFoot');
+    const msg = document.getElementById('otSummaryMsg');
+    const shell = document.getElementById('otSummaryShell');
+    const badge = document.getElementById('otSummaryBadge');
+    const statRow = document.getElementById('otStatRow');
+
+    const totalHours = list.reduce((s,[,a]) => s + a.hours, 0);
+    const totalAmount = Math.round(totalHours * CONFIG.OT_RATE);
+
+    /* stat chips */
+    statRow.innerHTML = `
+      <div class="stat-chip eu"><span class="n">${fmtHrs(Math.round(totalHours * 10) / 10)}</span><span class="l">Total OT Hours</span></div>
+      <div class="stat-chip glo"><span class="n">${fmtTk(totalAmount)}</span><span class="l">Total OT Payment</span></div>
+      <div class="stat-chip udp"><span class="n">${list.length}</span><span class="l">Agents with OT</span></div>
+    `;
+    animateNums(statRow);
+
+    badge.textContent = `${rows.length} entries`;
+
+    if(!list.length){
+      shell.style.display = 'none';
+      msg.style.display = 'block';
+      return;
+    }
+    shell.style.display = '';
+    msg.style.display = 'none';
+
+    body.innerHTML = list.map(([key, a], i) => `
+      <tr>
+        <td style="color:var(--muted);">${i + 1}</td>
+        <td>
+          <span class="ot-agent-cell">
+            <span class="avatar ${agentRegionClass(key)}">${esc(agentInitials(key))}</span>
+            <span>${esc(a.name)}</span>
+          </span>
+        </td>
+        <td>${a.entries}</td>
+        <td>${fmtHrs(Math.round(a.hours * 10) / 10)} hrs</td>
+        <td style="font-weight:600; color:var(--emerald);">${fmtTk(Math.round(a.hours * CONFIG.OT_RATE))}</td>
+      </tr>`).join('');
+
+    foot.innerHTML = `
+      <tr>
+        <td colspan="2">Total (${list.length} agent${list.length > 1 ? 's' : ''})</td>
+        <td>${rows.length}</td>
+        <td>${fmtHrs(Math.round(totalHours * 10) / 10)} hrs</td>
+        <td style="color:var(--emerald);">${fmtTk(totalAmount)}</td>
+      </tr>`;
+  }
+
+  document.getElementById('otStartDate').addEventListener('change', renderOTSummary);
+  document.getElementById('otEndDate').addEventListener('change', renderOTSummary);
+  document.getElementById('otRangeResetBtn').addEventListener('click', () => {
+    setOTDefaultDates();
+    renderOTSummary();
+  });
+
+  /* ---- OT Submit Modal ---- */
+  function openOTModal(){
+    const dateEl = document.getElementById('otDate');
+    if(!dateEl.value) dateEl.value = getSortKeyFromDate(new Date());
+    const msg = document.getElementById('otModalMsg');
+    msg.style.display = 'none';
+    msg.textContent = '';
+    msg.classList.remove('ok', 'err');
+    document.getElementById('otModalOverlay').style.display = 'flex';
+  }
+  function closeOTModal(){
+    document.getElementById('otModalOverlay').style.display = 'none';
+  }
+
+  document.getElementById('openOTModalBtn').addEventListener('click', openOTModal);
+  document.getElementById('otModalCloseX').addEventListener('click', closeOTModal);
+  document.getElementById('otModalCancel').addEventListener('click', closeOTModal);
+  document.getElementById('otModalOverlay').addEventListener('click', (e) => {
+    if(e.target.id === 'otModalOverlay') closeOTModal();
+  });
+
+  document.getElementById('otSubmitBtn').addEventListener('click', async () => {
+    const dateEl = document.getElementById('otDate');
+    const nameEl = document.getElementById('otName');
+    const hoursEl = document.getElementById('otHours');
+    const msg = document.getElementById('otModalMsg');
+    const btn = document.getElementById('otSubmitBtn');
+
+    const show = (text, isErr) => {
+      msg.style.display = 'block';
+      msg.textContent = text;
+      msg.classList.toggle('ok', !isErr);
+      msg.classList.toggle('err', !!isErr);
+    };
+
+    const date = dateEl.value;
+    const agentKey = nameEl.value;
+    const hours = parseFloat(hoursEl.value);
+
+    if(!date || !agentKey || !isFinite(hours) || hours <= 0){
+      show('✗ Date, Agent Name and Hours — তিনটাই সিলেক্ট করতে হবে।', true);
+      return;
+    }
+
+    const name = agentDisplayName(agentKey);
+    btn.disabled = true;
+    btn.textContent = 'Saving…';
+    try{
+      await fetch(CONFIG.OT_API_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ date: date, name: name, hours: hours })
+      });
+
+      // Optimistic local update — refresh না দিলেও সাথে সাথে দেখা যাবে
+      const d = new Date(date + 'T00:00:00');
+      const dd = String(d.getDate()).padStart(2,'0');
+      OT_ROWS.push({
+        sortKey: date,
+        display: `${dd} ${monthsShortEn[d.getMonth()]} ${d.getFullYear()}`,
+        agentName: name,
+        agentKey: agentKey,
+        hours: hours
+      });
+
+      show(`✓ Saved: ${name} · ${dd} ${monthsShortEn[d.getMonth()]} · ${fmtHrs(hours)} hrs = ৳${Math.round(hours * CONFIG.OT_RATE)}`, false);
+      hoursEl.value = '';
+      renderHistory();
+      renderOTSummary();
+
+      // সফল হলে একটু পরে modal বন্ধ
+      setTimeout(() => {
+        closeOTModal();
+        btn.disabled = false;
+        btn.textContent = 'Save OT';
+      }, 1400);
+      return;
+    }catch(err){
+      show('✗ Submit failed — internet connection check করে আবার try করো।', true);
+    }
+    btn.disabled = false;
+    btn.textContent = 'Save OT';
+  });
+
+  /* ========== MAIN LOAD ========== */
+  async function loadAll(){
+    const stateMsgToday = document.getElementById('stateMsgToday');
+    const updatedAtEl = document.getElementById('updatedAt');
+
+    try{
+      const newRows = await fetchScheduleRows();
+      ALL_ROWS = newRows;
+
+      try{ OT_ROWS = await fetchOvertimeRows(); }catch(e){ OT_ROWS = []; }
+      try{ SWAP_ROWS = await fetchSwapRequests(); }catch(e){ SWAP_ROWS = []; }
+
+      renderDateNav();
+      renderTodayView();
+
+      populateSelect('fMonth', [...new Set(ALL_ROWS.map(r=>r.month))].filter(Boolean));
+      populateSelect('fRegion', [...new Set(ALL_ROWS.map(r=>r.region))].filter(Boolean));
+      populateSelect('fShift', [...new Set(ALL_ROWS.map(r=>r.shift))].filter(Boolean).sort());
+      renderDetails();
+
+      populateAgents();
+      setDefaultDates();
+      renderHistory();
+
+      buildSwapOptions();
+      renderSwap();
+      renderCalendar();
+      buildOTOptions();
+      renderOTSummary();
+      if(document.getElementById('adminView').style.display !== 'none') renderAdminPanel();
+
+      updatedAtEl.textContent = 'Last synced · ' + new Date().toLocaleString('en-GB', {day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit'});
+
+      stateMsgToday.classList.remove('error');
+    } catch(err){
+      if (ALL_ROWS.length === 0) {
+        stateMsgToday.classList.add('error');
+        stateMsgToday.style.display = 'block';
+        document.getElementById('groupsHolder').innerHTML = '';
+        stateMsgToday.textContent = 'Could not load data. Check that the Sheet sharing is set to "Anyone with the link – Viewer".';
+        updatedAtEl.textContent = 'Trouble loading data...';
+      } else {
+        updatedAtEl.textContent = 'Last update failed (showing old data)';
+      }
+      console.error(err);
+    }
+  }
+
+  /* ========== EVENT BINDINGS ========== */
+  ['fMonth','fRegion','fShift'].forEach(id => document.getElementById(id).addEventListener('change', () => {
+    detailsCurrentPage = 1;
+    renderDetails();
+  }));
+  document.getElementById('fAgent').addEventListener('input', () => {
+    detailsCurrentPage = 1;
+    renderDetails();
+  });
+  document.getElementById('clearBtn').addEventListener('click', () => {
+    document.getElementById('fMonth').value = '';
+    document.getElementById('fRegion').value = '';
+    document.getElementById('fShift').value = '';
+    document.getElementById('fAgent').value = '';
+    detailsCurrentPage = 1;
+    renderDetails();
+  });
+
+  document.getElementById('agentSelect').addEventListener('change', renderHistory);
+  document.getElementById('startDate').addEventListener('change', renderHistory);
+  document.getElementById('endDate').addEventListener('change', renderHistory);
+  document.querySelectorAll('#kpiOptions .kpi-option').forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectedKpiCategory = btn.dataset.kpi;
+      document.querySelectorAll('#kpiOptions .kpi-option').forEach(b => {
+        b.classList.toggle('active', b.dataset.kpi === selectedKpiCategory);
+      });
+      renderHistory();
+    });
+  });
+  document.getElementById('toggleSalaryBtn').addEventListener('click', () => {
+    salaryVisible = !salaryVisible;
+    renderHistory();
+  });
+
+  document.querySelectorAll('input[type="date"]').forEach(input => {
+    input.addEventListener('click', () => {
+      if(typeof input.showPicker === 'function'){
+        try{ input.showPicker(); }catch(e){ /* ignore */ }
+      }
+    });
+  });
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    document.getElementById('agentSelect').value = '';
+    selectedKpiCategory = '';
+    document.querySelectorAll('#kpiOptions .kpi-option').forEach(b => {
+      b.classList.toggle('active', b.dataset.kpi === '');
+    });
+    salaryVisible = false;
+    setDefaultDates();
+    renderHistory();
+  });
+
+  /* ===== Live masthead clock ===== */
+  function tickClock(){
+    const el = document.getElementById('liveClock');
+    if(!el) return;
+    const d = new Date();
+    let h = d.getHours();
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    h = h % 12; if(h === 0) h = 12;
+    el.textContent = `${String(h).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}:${String(d.getSeconds()).padStart(2,'0')} ${ampm}`;
+  }
+  tickClock();
+  setInterval(tickClock, 1000);
+
+  /* ===== Initial Load & Auto Refresh ===== */
+  setOTDefaultDates();
+  loadAll();
+  setInterval(loadAll, CONFIG.REFRESH_MS);
+</script>
+</body>
+</html>
